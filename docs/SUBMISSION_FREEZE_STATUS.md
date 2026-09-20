@@ -1,6 +1,6 @@
 # Submission-freeze status
 
-This document tracks the final actions required before the public computational reproducibility archive is published as `v1.0.0-submission`.
+The public computational reproducibility archive is now frozen as GitHub release `v1.0.0-submission`.
 
 ## Completed
 
@@ -15,15 +15,11 @@ This document tracks the final actions required before the public computational 
 - [x] Exact public archive fresh-extracted and `python reproduction/run_all.py --mode verify` passed.
 - [x] Explicit privacy check confirms that `MAIN.pdf`, `MAIN.tex`, supplementary manuscript PDF/source, legacy manuscript source, cover letter and journal-submission files are not included.
 - [x] Public release SHA-256 hashes recorded in `docs/RELEASE_ASSET_SHA256SUMS.txt`.
-- [x] Public release notes revised so no manuscript PDF/source is listed as a release asset.
-- [x] README and QUICKSTART revised to distinguish the public reproducibility archive from the private journal-submission package.
-
-## Remaining before the release is public
-
-- [ ] Create/publish GitHub Release/tag `v1.0.0-submission` from the current `main` branch.
-- [ ] Upload only the four public release assets documented in the release notes: the public reproducibility ZIP, two MATPOWER CI artifacts and `SHA256SUMS_PUBLIC.txt`.
-- [ ] Set the GitHub repository About description field to the text below.
-- [ ] After publication, verify the release page, uploaded asset names/hashes and final repository CI state.
+- [x] Public release/tag `v1.0.0-submission` published from the frozen public-safe repository state.
+- [x] The release contains only the public reproducibility ZIP, the two executable MATPOWER CI artifacts and `SHA256SUMS_PUBLIC.txt`, in addition to GitHub's automatic source snapshots of the tagged public repository.
+- [x] Release asset names and SHA-256 digests verified against the prepared public package.
+- [x] README/QUICKSTART maintain the boundary between public reproducibility materials and private journal-submission files.
+- [x] CITATION metadata updated to the actual `v1.0.0-submission` release.
 
 ## Repository About description
 
@@ -31,8 +27,8 @@ This document tracks the final actions required before the public computational 
 
 ## Private submission boundary
 
-The reconstructed manuscript PDF/source and supplementary manuscript files are retained privately for journal submission. They are not part of the public GitHub release during peer review.
+The final manuscript PDF/source, supplementary manuscript PDF/source, cover letter and other journal-submission files are retained privately for journal submission. They are not part of the public GitHub release during peer review.
 
 ## Scientific freeze boundary
 
-No new VELE numerical experiments are required merely to complete the repository freeze. Scientific results should be reopened only if release verification exposes a reproducibility defect or technical inconsistency.
+No new VELE numerical experiments are required for the submission package. Scientific results should be reopened only if a reproducibility defect or technical inconsistency is discovered. Any post-submission scientific or code correction should use a new release version rather than silently replacing `v1.0.0-submission`.

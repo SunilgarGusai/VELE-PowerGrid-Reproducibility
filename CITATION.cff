@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the associated article and this software repository."
+title: "VELE Power-Grid Vulnerability Screening — Reproducibility Repository"
+type: software
+authors:
+  - family-names: Gusai
+    given-names: Sunilgar L.
+  - family-names: Jadeja
+    given-names: Manoharsinh R.
+repository-code: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility"
+version: "1.0.0"
+date-released: 2026-09-21
+abstract: "Reproducibility code, MATPOWER-derived benchmark processing, structural VELE analyses, DC-flow validation, complete physical-branch outage screening, statistical comparisons, sensitivity analyses, runtime evidence, manuscript builders, and verification utilities supporting the manuscript Vertex Eccentricity Labeled Energy for Power-Grid Vulnerability Screening with DC-Flow Validation."
+keywords:
+  - power systems
+  - vulnerability screening
+  - spectral graph theory
+  - MATPOWER
+  - DC power flow
+  - reproducibility

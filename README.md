@@ -34,13 +34,11 @@ A GitHub Actions workflow independently checks the intact DC implementation in a
 5. independently parses the same MATPOWER case matrices in NumPy without importing MATPOWER or PYPOWER;
 6. compares bus voltage angles and branch active-power flows.
 
-Successful workflow run **35531005040** reports:
+Reference workflow run **35531005040** reports maximum absolute differences of **4.050094e-13 degrees** in bus angle and **5.798029e-12 MW** in branch active-power flow. A fresh clean-run repeat after the CI runtime refresh, workflow run **35533409590**, also passes all six cases and reports maxima of **6.039613e-13 degrees** and **6.579626e-12 MW**.
 
-- maximum absolute bus-angle difference: **4.050094e-13 degrees**;
-- maximum absolute from-end branch-flow difference: **5.798029e-12 MW**;
-- maximum absolute to-end branch-flow difference: **5.798029e-12 MW**.
+The last digits vary slightly across hosted runner/software-stack executions, as expected for floating-point linear algebra, but both complete runs remain far inside the declared `1e-8` tolerances. The environment-robust statement is therefore that repeated executable checks agree within **1e-12 degrees** for bus angles and **1e-11 MW** for branch active-power flows.
 
-These are numerical-roundoff differences, far below the declared `1e-8` tolerances. The exact six-case results are committed in `validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md` and `validation/results/matpower_octave_crosscheck_summary.csv`.
+The reference six-case results are committed in `validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md` and `validation/results/matpower_octave_crosscheck_summary.csv`. The repeat-run summary and interpretation are recorded in `validation/results/matpower_octave_crosscheck_summary_run_35533409590.csv` and `validation/results/MATPOWER_OCTAVE_REPEATABILITY_NOTE.md`.
 
 This executable check validates the **intact benchmark DC equations and branch-flow implementation**. The manuscript's custom island handling, generator redispatch and load-curtailment proxies remain separately tested study components and are not represented as native MATPOWER security-analysis functionality.
 
@@ -49,9 +47,9 @@ This executable check validates the **intact benchmark DC equations and branch-f
 The live `main` branch is deliberately kept as a reviewer-facing **validation and provenance layer** rather than as an unexplained dump of every development artifact. Its principal contents are:
 
 - `.github/workflows/` — Repository verification and MATPOWER/Octave validation CI;
-- `validation/` — independent NumPy reference, executable MATPOWER/Octave driver, comparator and committed validation report;
+- `validation/` — independent NumPy reference, executable MATPOWER/Octave driver, comparator and committed validation reports;
 - `stages/01_matpower_preparation/` — portable MATPOWER preparation code;
-- `stages/07_branch_outage_validation/outputs/` — frozen physical-branch outage summary tables;
+- `stages/07_branch_outage_validation/` — branch-outage scope documentation and frozen physical-branch summary tables;
 - `docs/` — benchmark provenance and Phase-11 branch-outage documentation;
 - `QUICKSTART.md` — commands that are valid for the files actually present on `main`;
 - `CITATION.cff`, `LICENSE`, `THIRD_PARTY_LICENSES.md`, `requirements.txt` — citation, licensing and pinned environment metadata.
@@ -62,7 +60,7 @@ The complete manuscript-associated archival bundle is intended to be attached to
 
 The branch-outage extension quantifies a key topology-only limitation. When one circuit of a parallel pair is removed while another remains, the simple structural edge is unchanged. In the frozen analysis, **22 active branch rows belong to parallel pairs; all 22 have zero VELE stress while producing nonzero DC flow redistribution**. More broadly, **269/784** physical branch outages have numerically zero bounded VELE stress. This is one reason the paper treats VELE as complementary structural screening rather than a general critical-transmission-line index.
 
-See `docs/PHASE11_BRANCH_OUTAGE_REPORT.md` for scope, results and limitations.
+See `stages/07_branch_outage_validation/README.md` and `docs/PHASE11_BRANCH_OUTAGE_REPORT.md` for scope, results and limitations.
 
 ## Reproducibility status
 

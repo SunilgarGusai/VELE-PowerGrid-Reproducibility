@@ -5,7 +5,7 @@
 
 **Reproducible VELE power-grid vulnerability screening with MATPOWER/DC-flow validation, islanding, load-shedding proxies, branch N−1 analysis, and corrected reinforcement heuristics.**
 
-Public reproducibility and validation materials for the manuscript:
+Public reproducibility and validation materials supporting the study:
 
 **Vertex Eccentricity Labeled Energy for Power-Grid Vulnerability Screening with DC-Flow Validation**
 
@@ -42,7 +42,7 @@ The last digits vary slightly across hosted runner/software-stack executions, as
 
 The reference six-case results are committed in `validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md` and `validation/results/matpower_octave_crosscheck_summary.csv`. The repeat-run summary and interpretation are recorded in `validation/results/matpower_octave_crosscheck_summary_run_35533409590.csv` and `validation/results/MATPOWER_OCTAVE_REPEATABILITY_NOTE.md`.
 
-This executable check validates the **intact benchmark DC equations and branch-flow implementation**. The manuscript's custom island handling, generator redispatch and load-curtailment proxies remain separately tested study components and are not represented as native MATPOWER security-analysis functionality.
+This executable check validates the **intact benchmark DC equations and branch-flow implementation**. The study's custom island handling, generator redispatch and load-curtailment proxies remain separately tested components and are not represented as native MATPOWER security-analysis functionality.
 
 ## Current public `main` branch
 
@@ -56,7 +56,7 @@ The live `main` branch is deliberately kept as a reviewer-facing **validation an
 - `QUICKSTART.md` — commands that are valid for the files actually present on `main`;
 - `CITATION.cff`, `LICENSE`, `THIRD_PARTY_LICENSES.md`, `requirements.txt` — citation, licensing and pinned environment metadata.
 
-The complete manuscript-associated archival bundle is intended to be attached to the frozen **`v1.0.0-submission`** GitHub release before journal submission. That release will contain the full staged inputs/outputs, portable reproduction entry points, manuscript builders and claim-traceability material associated with the submitted paper. Until that release exists, `main` should not be described as the complete submission archive.
+The frozen **`v1.0.0-submission`** release is intended to contain the complete public computational reproducibility archive: staged inputs/outputs, portable reproduction entry points, executable validation evidence, technical documentation and checksums. **The submitted manuscript PDF, LaTeX manuscript source, supplementary manuscript PDF/source, cover letter and journal-submission files are intentionally excluded from the public release while the article is under peer review.**
 
 ## Important physical-branch result
 
@@ -68,7 +68,7 @@ See `stages/07_branch_outage_validation/README.md` and `docs/PHASE11_BRANCH_OUTA
 
 The **Repository verification** workflow checks the pinned Python environment, required reviewer-facing files, script syntax, CLI smoke tests and committed numerical validation evidence. The **MATPOWER 8.1 / Octave validation** workflow independently executes MATPOWER on a clean runner and uploads the raw cross-check artifact.
 
-See `QUICKSTART.md` for the current reproducibility commands and the boundary between the live `main` branch and the forthcoming frozen submission release.
+See `QUICKSTART.md` for the current reproducibility commands and the boundary between the live `main` branch and the frozen public reproducibility release.
 
 ## Data provenance
 
@@ -82,7 +82,7 @@ Custom analysis code is released under the MIT License. MATPOWER software and be
 
 ## Citation
 
-Citation metadata are provided in `CITATION.cff`. The exact manuscript-associated repository state should be cited from the frozen `v1.0.0-submission` release once it is created.
+Citation metadata are provided in `CITATION.cff`. The exact computational repository state should be cited from the frozen `v1.0.0-submission` release once it is published.
 
 ## Academic profile and related research
 

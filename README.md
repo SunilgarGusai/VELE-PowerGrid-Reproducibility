@@ -56,7 +56,7 @@ The live `main` branch is deliberately kept as a reviewer-facing **validation an
 - `QUICKSTART.md` — commands that are valid for the files actually present on `main`;
 - `CITATION.cff`, `LICENSE`, `THIRD_PARTY_LICENSES.md`, `requirements.txt` — citation, licensing and pinned environment metadata.
 
-The frozen **`v1.0.0-submission`** release is intended to contain the complete public computational reproducibility archive: staged inputs/outputs, portable reproduction entry points, executable validation evidence, technical documentation and checksums. **The submitted manuscript PDF, LaTeX manuscript source, supplementary manuscript PDF/source, cover letter and journal-submission files are intentionally excluded from the public release while the article is under peer review.**
+The frozen **[`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission)** release contains the complete public computational reproducibility archive: staged inputs/outputs, portable reproduction entry points, executable validation evidence, technical documentation and checksums. **The submitted manuscript PDF, LaTeX manuscript source, supplementary manuscript PDF/source, cover letter and journal-submission files are intentionally excluded from the public release while the article is under peer review.**
 
 ## Important physical-branch result
 
@@ -82,7 +82,7 @@ Custom analysis code is released under the MIT License. MATPOWER software and be
 
 ## Citation
 
-Citation metadata are provided in `CITATION.cff`. The exact computational repository state should be cited from the frozen `v1.0.0-submission` release once it is published.
+Citation metadata are provided in `CITATION.cff`. Cite the frozen computational state from the public [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) release.
 
 ## Academic profile and related research
 

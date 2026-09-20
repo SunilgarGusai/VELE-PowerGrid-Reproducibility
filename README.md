@@ -11,72 +11,60 @@ Authors: **Sunilgar L. Gusai** and **Manoharsinh R. Jadeja**
 
 ## Scope
 
-This repository supports a hybrid structural–electrical study of IEEE/MATPOWER benchmark power networks (IEEE 14, 30, 39, 57, 118 and 300). It contains the component-wise VELE formulation, corrected attack-AUC definitions, Direct/VCB/DCP structural line-candidate heuristics, single-bus outage screening, a complete one-at-a-time screen of all **784 active physical branch rows**, progressive attacks, structural comparators, island-aware DC-flow validation, redispatch and flow-stress sensitivity analyses, finite-benchmark statistics, runtime evidence, tables, figures and verification utilities.
+This repository supports a hybrid structural–electrical study of IEEE/MATPOWER benchmark power networks (IEEE 14, 30, 39, 57, 118 and 300). The frozen study contains component-wise VELE, corrected attack-AUC definitions, Direct/VCB/DCP structural line-candidate heuristics, single-bus outage screening, a complete one-at-a-time screen of all **784 active physical branch rows**, progressive attacks, structural comparators, island-aware DC-flow validation, redispatch and flow-stress sensitivity analyses, finite-benchmark statistics, runtime evidence, tables, figures and verification utilities.
 
 VELE is evaluated as a **training-free, eccentricity-sensitive structural screening diagnostic**. It is **not** presented as a replacement for AC/DC contingency analysis, optimal power flow, dynamic stability, protection studies, cascading-failure simulation, or transmission-expansion optimization.
 
 ## Main benchmark coverage
 
-- IEEE 14
-- IEEE 30
-- IEEE 39
-- IEEE 57
-- IEEE 118
-- IEEE 300
-- MATPOWER 8.1 source cases
+- IEEE 14, 30, 39, 57, 118 and 300
+- MATPOWER 8.1 benchmark source
 - 558 single-bus outage cases
 - 784 physical branch-outage cases
 - 1,692 progressive electrical states
 
-## Quick verification
+## Executable MATPOWER 8.1 validation — PASS
 
-```bash
-python -m pip install -r requirements.txt
-python reproduction/run_all.py --mode verify
-```
+The repository now includes a fully automated GitHub Actions cross-check that:
 
-To regenerate the post-review validation analyses:
+1. starts from a clean Ubuntu runner;
+2. installs GNU Octave;
+3. downloads the official MATPOWER 8.1 release and verifies its published SHA-256 digest;
+4. executes MATPOWER `rundcpf` on all six intact benchmark systems;
+5. independently parses the same MATPOWER case matrices in NumPy without importing MATPOWER or PYPOWER;
+6. compares bus voltage angles and branch active-power flows.
 
-```bash
-python reproduction/run_all.py --mode reproduce-postreview
-```
+The successful cloud run reports:
 
-To regenerate the physical-branch outage extension:
+- maximum absolute bus-angle difference: **4.050094e-13 degrees**;
+- maximum absolute from-end branch-flow difference: **5.798029e-12 MW**;
+- maximum absolute to-end branch-flow difference: **5.798029e-12 MW**.
 
-```bash
-python reproduction/run_all.py --mode reproduce-branch
-```
+These are numerical-roundoff differences. See `validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md` and the green workflow badge above.
 
-## Executable MATPOWER validation
+This executable cross-check validates the intact DC equations. The manuscript's custom island handling, redispatch and load-curtailment proxies remain separately tested by the analysis/verification stages and are not represented as native MATPOWER security-analysis functionality.
 
-A GitHub Actions workflow installs **GNU Octave** in a clean Ubuntu runner, downloads the official **MATPOWER 8.1** release, executes `rundcpf`, exports bus angles and branch active-power flows, and compares them with the repository's independent Python/PYPOWER-aligned DC implementation. This is intended to provide an external, repeatable implementation cross-check rather than a self-consistency test.
+## Public repository organization
 
-See `validation/README.md` and `.github/workflows/matpower-octave-validation.yml`.
+The GitHub tree is being kept deliberately reviewer-facing rather than as a dump of development scratch files. It contains:
 
-## Repository map
+- `validation/` — executable MATPOWER 8.1 / GNU Octave cross-check;
+- `stages/` — reproducible scientific stages and frozen summary outputs;
+- `docs/` — data provenance, Phase-11 branch validation and claim-level documentation;
+- `manuscript/` — current public manuscript/reproducibility metadata when frozen;
+- `reproduction/` — portable entry points in the frozen submission release;
+- `.github/workflows/` — cloud validation and integrity checks.
 
-- `stages/01_matpower_preparation/` — pinned MATPOWER inputs and parsed electrical data
-- `stages/02_structural_vele/` — structural VELE and attack/candidate analyses
-- `stages/03_electrical_validation/` — single-bus and progressive DC-flow outputs
-- `stages/04_correlation_analysis/` — statistical analyses
-- `stages/05_runtime_analysis/` — runtime and complexity evidence
-- `stages/06_postreview_validation/` — corrected AUCs, comparator analyses and sensitivities
-- `stages/07_branch_outage_validation/` — complete 784-branch outage extension
-- `validation/` — executable MATPOWER 8.1 / GNU Octave cross-check
-- `manuscript/` — manuscript/supplement sources, tables, figures and builders
-- `reproduction/` — portable reproduction entry points
-- `verification/` — repository integrity checks
-- `docs/` — claim traceability and technical documentation
-- `provenance/` — historical development/review artifacts, separated from reviewer-facing execution paths
+The exact full submission archive will be attached to the frozen **`v1.0.0-submission`** GitHub release after the final manuscript/repository consistency check.
 
 ## Important branch-outage result
 
-The physical-branch extension quantifies a key topology-only limitation: when one circuit of a parallel pair is removed while another remains, the simple structural edge is unchanged. In the frozen analysis, **22 active branch rows belong to parallel pairs; all 22 can have zero VELE stress while still producing non-zero DC flow redistribution**. This is one reason the paper treats VELE as complementary structural screening rather than a general transmission-line criticality index.
+The physical-branch extension quantifies a key topology-only limitation: when one circuit of a parallel pair is removed while another remains, the simple structural edge is unchanged. In the frozen analysis, **22 active branch rows belong to parallel pairs; all 22 have zero VELE stress while producing non-zero DC flow redistribution**. More broadly, 269/784 physical branch outages have numerically zero bounded VELE stress. This is one reason the paper treats VELE as complementary structural screening rather than a general transmission-line criticality index.
 
 ## Citation
 
-Citation metadata are provided in `CITATION.cff`. A frozen GitHub release corresponding to the submitted manuscript will be tagged `v1.0.0-submission` after final validation.
+Citation metadata are provided in `CITATION.cff`. The exact manuscript-associated repository state will be frozen as `v1.0.0-submission` after the current import and verification work is complete.
 
 ## License and third-party data
 
-Custom analysis code is released under the MIT License. MATPOWER case files and other third-party materials retain their original upstream terms; see `THIRD_PARTY_LICENSES.md` and `docs/DATA_SOURCE_MANIFEST.md`.
+Custom analysis code is released under the MIT License. MATPOWER software and benchmark materials retain their original upstream terms; see `THIRD_PARTY_LICENSES.md` and `docs/DATA_SOURCE_MANIFEST.md`. The repository does not relicense MATPOWER case data.

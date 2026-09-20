@@ -3,7 +3,7 @@
 [![Repository verification](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml/badge.svg)](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml)
 [![MATPOWER 8.1 / Octave validation](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml/badge.svg)](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml)
 
-Public reproducibility materials for the manuscript:
+Public reproducibility and validation materials for the manuscript:
 
 **Vertex Eccentricity Labeled Energy for Power-Grid Vulnerability Screening with DC-Flow Validation**
 
@@ -11,63 +11,78 @@ Authors: **Sunilgar L. Gusai** and **Manoharsinh R. Jadeja**
 
 ## Scope
 
-This repository supports a hybrid structural–electrical study of IEEE/MATPOWER benchmark power networks (IEEE 14, 30, 39, 57, 118 and 300). The frozen study contains component-wise VELE, corrected attack-AUC definitions, Direct/VCB/DCP structural line-candidate heuristics, single-bus outage screening, a complete one-at-a-time screen of all **784 active physical branch rows**, progressive attacks, structural comparators, island-aware DC-flow validation, redispatch and flow-stress sensitivity analyses, finite-benchmark statistics, runtime evidence, tables, figures and verification utilities.
+The study evaluates a hybrid structural–electrical vulnerability-screening framework on IEEE/MATPOWER 14, 30, 39, 57, 118 and 300. The frozen analysis includes component-wise VELE, corrected attack-AUC definitions, Direct/VCB/DCP structural line-candidate heuristics, 558 single-bus outage cases, a complete one-at-a-time screen of all **784 active physical branch rows**, progressive attacks, conventional structural comparators, island-aware DC-flow analysis, redispatch and flow-stress sensitivity, finite-benchmark statistics and runtime evidence.
 
-VELE is evaluated as a **training-free, eccentricity-sensitive structural screening diagnostic**. It is **not** presented as a replacement for AC/DC contingency analysis, optimal power flow, dynamic stability, protection studies, cascading-failure simulation, or transmission-expansion optimization.
+VELE is evaluated as a **training-free, eccentricity-sensitive structural screening diagnostic**. It is **not** presented as a replacement for AC/DC contingency analysis, optimal power flow, dynamic stability, protection studies, cascading-failure simulation or transmission-expansion optimization.
 
-## Main benchmark coverage
+## Benchmark coverage
 
 - IEEE 14, 30, 39, 57, 118 and 300
-- MATPOWER 8.1 benchmark source
+- MATPOWER **8.1** as the frozen benchmark source
 - 558 single-bus outage cases
 - 784 physical branch-outage cases
 - 1,692 progressive electrical states
 
 ## Executable MATPOWER 8.1 validation — PASS
 
-The repository now includes a fully automated GitHub Actions cross-check that:
+A GitHub Actions workflow independently checks the intact DC implementation in a clean cloud environment. It:
 
 1. starts from a clean Ubuntu runner;
 2. installs GNU Octave;
-3. downloads the official MATPOWER 8.1 release and verifies its published SHA-256 digest;
+3. downloads the official MATPOWER 8.1 release and verifies SHA-256;
 4. executes MATPOWER `rundcpf` on all six intact benchmark systems;
 5. independently parses the same MATPOWER case matrices in NumPy without importing MATPOWER or PYPOWER;
 6. compares bus voltage angles and branch active-power flows.
 
-The successful cloud run reports:
+Successful workflow run **35531005040** reports:
 
 - maximum absolute bus-angle difference: **4.050094e-13 degrees**;
 - maximum absolute from-end branch-flow difference: **5.798029e-12 MW**;
 - maximum absolute to-end branch-flow difference: **5.798029e-12 MW**.
 
-These are numerical-roundoff differences. See `validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md` and the green workflow badge above.
+These are numerical-roundoff differences, far below the declared `1e-8` tolerances. The exact six-case results are committed in `validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md` and `validation/results/matpower_octave_crosscheck_summary.csv`.
 
-This executable cross-check validates the intact DC equations. The manuscript's custom island handling, redispatch and load-curtailment proxies remain separately tested by the analysis/verification stages and are not represented as native MATPOWER security-analysis functionality.
+This executable check validates the **intact benchmark DC equations and branch-flow implementation**. The manuscript's custom island handling, generator redispatch and load-curtailment proxies remain separately tested study components and are not represented as native MATPOWER security-analysis functionality.
 
-## Public repository organization
+## Current public `main` branch
 
-The GitHub tree is being kept deliberately reviewer-facing rather than as a dump of development scratch files. It contains:
+The live `main` branch is deliberately kept as a reviewer-facing **validation and provenance layer** rather than as an unexplained dump of every development artifact. Its principal contents are:
 
-- `validation/` — executable MATPOWER 8.1 / GNU Octave cross-check;
-- `stages/` — reproducible scientific stages and frozen summary outputs;
-- `docs/` — data provenance, Phase-11 branch validation and claim-level documentation;
-- `manuscript/` — current public manuscript/reproducibility metadata when frozen;
-- `reproduction/` — portable entry points in the frozen submission release;
-- `.github/workflows/` — cloud validation and integrity checks.
+- `.github/workflows/` — Repository verification and MATPOWER/Octave validation CI;
+- `validation/` — independent NumPy reference, executable MATPOWER/Octave driver, comparator and committed validation report;
+- `stages/01_matpower_preparation/` — portable MATPOWER preparation code;
+- `stages/07_branch_outage_validation/outputs/` — frozen physical-branch outage summary tables;
+- `docs/` — benchmark provenance and Phase-11 branch-outage documentation;
+- `QUICKSTART.md` — commands that are valid for the files actually present on `main`;
+- `CITATION.cff`, `LICENSE`, `THIRD_PARTY_LICENSES.md`, `requirements.txt` — citation, licensing and pinned environment metadata.
 
-The exact full submission archive will be attached to the frozen **`v1.0.0-submission`** GitHub release after the final manuscript/repository consistency check.
+The complete manuscript-associated archival bundle is intended to be attached to the frozen **`v1.0.0-submission`** GitHub release before journal submission. That release will contain the full staged inputs/outputs, portable reproduction entry points, manuscript builders and claim-traceability material associated with the submitted paper. Until that release exists, `main` should not be described as the complete submission archive.
 
-## Important branch-outage result
+## Important physical-branch result
 
-The physical-branch extension quantifies a key topology-only limitation: when one circuit of a parallel pair is removed while another remains, the simple structural edge is unchanged. In the frozen analysis, **22 active branch rows belong to parallel pairs; all 22 have zero VELE stress while producing non-zero DC flow redistribution**. More broadly, 269/784 physical branch outages have numerically zero bounded VELE stress. This is one reason the paper treats VELE as complementary structural screening rather than a general transmission-line criticality index.
+The branch-outage extension quantifies a key topology-only limitation. When one circuit of a parallel pair is removed while another remains, the simple structural edge is unchanged. In the frozen analysis, **22 active branch rows belong to parallel pairs; all 22 have zero VELE stress while producing nonzero DC flow redistribution**. More broadly, **269/784** physical branch outages have numerically zero bounded VELE stress. This is one reason the paper treats VELE as complementary structural screening rather than a general critical-transmission-line index.
 
-## Citation
+See `docs/PHASE11_BRANCH_OUTAGE_REPORT.md` for scope, results and limitations.
 
-Citation metadata are provided in `CITATION.cff`. The exact manuscript-associated repository state will be frozen as `v1.0.0-submission` after the current import and verification work is complete.
+## Reproducibility status
+
+The **Repository verification** workflow checks the pinned Python environment, required reviewer-facing files, script syntax, CLI smoke tests and committed numerical validation evidence. The **MATPOWER 8.1 / Octave validation** workflow independently executes MATPOWER on a clean runner and uploads the raw cross-check artifact.
+
+See `QUICKSTART.md` for the current reproducibility commands and the boundary between the live `main` branch and the forthcoming frozen submission release.
+
+## Data provenance
+
+`docs/DATA_SOURCE_MANIFEST.md` records the pinned MATPOWER release, release-archive SHA-256, benchmark systems, electrical fields used, treatment of `RATE_A`, original bus identifiers, and the distinction between simple structural edges and physical electrical branch rows.
+
+No missing thermal ratings are fabricated.
 
 ## License and third-party data
 
 Custom analysis code is released under the MIT License. MATPOWER software and benchmark materials retain their original upstream terms; see `THIRD_PARTY_LICENSES.md` and `docs/DATA_SOURCE_MANIFEST.md`. The repository does not relicense MATPOWER case data.
+
+## Citation
+
+Citation metadata are provided in `CITATION.cff`. The exact manuscript-associated repository state should be cited from the frozen `v1.0.0-submission` release once it is created.
 
 ## Academic profile and related research
 

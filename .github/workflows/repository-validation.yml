@@ -1,0 +1,51 @@
+name: Repository verification
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Check required repository files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md
+          test -f QUICKSTART.md
+          test -f CITATION.cff
+          test -f LICENSE
+          test -f THIRD_PARTY_LICENSES.md
+          test -f requirements.txt
+          test -f validation/python_dcpf_reference.py
+          test -f validation/compare_matpower_python.py
+          test -f validation/run_matpower_crosscheck.m
+          test -f validation/README.md
+
+      - name: Python syntax check
+        run: |
+          python -m py_compile validation/python_dcpf_reference.py
+          python -m py_compile validation/compare_matpower_python.py
+
+      - name: CLI smoke tests
+        run: |
+          python validation/python_dcpf_reference.py --help
+          python validation/compare_matpower_python.py --help
+
+      - name: Summary
+        run: |
+          echo '## Repository verification' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Required public-facing files: PASS' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Python validation scripts compile: PASS' >> "$GITHUB_STEP_SUMMARY"
+          echo '- CLI smoke tests: PASS' >> "$GITHUB_STEP_SUMMARY"

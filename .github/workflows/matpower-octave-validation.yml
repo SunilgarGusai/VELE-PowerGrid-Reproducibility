@@ -49,12 +49,11 @@ jobs:
             https://github.com/MATPOWER/matpower/releases/download/8.1/matpower8.1.zip
           echo '7f13b1441669a64e312d14a60e564cd91977ff1676ff77d25538e94ff313dd56  '"$RUNNER_TEMP/matpower8.1.zip" | sha256sum -c -
           unzip -q "$RUNNER_TEMP/matpower8.1.zip" -d "$RUNNER_TEMP/matpower_download"
-          MP_HOME=$(find "$RUNNER_TEMP/matpower_download" -maxdepth 2 -type f -name 'rundcpf.m' -printf '%h\n' | sed 's#/lib$##' | head -1)
-          if [ -z "$MP_HOME" ]; then
-            MP_HOME=$(find "$RUNNER_TEMP/matpower_download" -maxdepth 2 -type d -name 'matpower*' | head -1)
-          fi
-          test -n "$MP_HOME"
-          test -f "$MP_HOME/data/case14.m"
+          CASE14=$(find "$RUNNER_TEMP/matpower_download" -type f -path '*/data/case14.m' -print -quit)
+          test -n "$CASE14"
+          MP_HOME=$(dirname "$(dirname "$CASE14")")
+          test -f "$MP_HOME/lib/rundcpf.m"
+          test -f "$MP_HOME/data/case300.m"
           echo "MATPOWER_HOME=$MP_HOME" >> "$GITHUB_ENV"
           echo "MATPOWER_HOME=$MP_HOME"
 

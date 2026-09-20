@@ -3,6 +3,8 @@
 [![Repository verification](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml/badge.svg)](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml)
 [![MATPOWER 8.1 / Octave validation](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml/badge.svg)](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml)
 
+**Reproducible VELE power-grid vulnerability screening with MATPOWER/DC-flow validation, islanding, load-shedding proxies, branch N−1 analysis, and corrected reinforcement heuristics.**
+
 Public reproducibility and validation materials for the manuscript:
 
 **Vertex Eccentricity Labeled Energy for Power-Grid Vulnerability Screening with DC-Flow Validation**

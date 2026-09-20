@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite the associated article and the frozen submission release when available."
+message: "If you use this repository, please cite the associated article and the frozen v1.0.0-submission reproducibility release."
 title: "VELE Power-Grid Vulnerability Screening — Reproducibility Repository"
 type: software
 authors:
@@ -9,9 +9,10 @@ authors:
   - family-names: Jadeja
     given-names: Manoharsinh R.
 repository-code: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility"
-version: "1.0.0"
+url: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission"
+version: "1.0.0-submission"
 date-released: 2026-09-21
-abstract: "Public validation and provenance repository supporting the manuscript Vertex Eccentricity Labeled Energy for Power-Grid Vulnerability Screening with DC-Flow Validation. The live main branch contains executable MATPOWER 8.1/GNU Octave cross-validation, pinned benchmark provenance and environment metadata, selected portable stage code, frozen physical-branch outage summary outputs, licensing information and continuous-integration checks. The complete manuscript-associated archival bundle is to be frozen in the v1.0.0-submission release before journal submission."
+abstract: "Public computational reproducibility materials supporting the manuscript Vertex Eccentricity Labeled Energy for Power-Grid Vulnerability Screening with DC-Flow Validation. The v1.0.0-submission release contains the frozen public-safe staged code, machine-readable outputs, executable MATPOWER 8.1/GNU Octave validation evidence, benchmark provenance, technical documentation and integrity checks. The submitted manuscript PDF/source and journal-submission files are intentionally excluded from the public release during peer review."
 keywords:
   - power systems
   - vulnerability screening

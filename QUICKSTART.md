@@ -1,6 +1,6 @@
 # Quick start
 
-This `main` branch is the live reviewer-facing verification layer for the VELE power-grid study. It contains the executable MATPOWER/Octave cross-check, pinned environment information, benchmark provenance, selected portable stage code, and frozen branch-outage summary outputs. The complete journal-submission snapshot will be frozen separately as the `v1.0.0-submission` release before submission.
+This `main` branch is the live reviewer-facing verification layer for the VELE power-grid study. It contains the executable MATPOWER/Octave cross-check, pinned environment information, benchmark provenance, selected portable stage code, and frozen branch-outage summary outputs. The complete public reproducibility snapshot is frozen separately as the `v1.0.0-submission` release.
 
 ## 1. Python environment
 
@@ -79,9 +79,11 @@ LICENSE
 
 No missing thermal ratings are fabricated, and the simple structural graph is kept distinct from the physical-branch electrical representation.
 
-## 6. Submission snapshot
+## 6. Frozen public reproducibility release
 
-The complete manuscript-associated archive—including the full staged inputs/outputs, portable reproduction entry points, manuscript builders, and claim-traceability material—is intended to be attached to the frozen `v1.0.0-submission` GitHub release before journal submission. Until that release is present, treat `main` as the continuously verified public validation/provenance layer rather than as the complete archival submission bundle.
+The `v1.0.0-submission` release contains the complete public computational archive: staged inputs/outputs, portable reproduction entry points, validation evidence, technical documentation and checksums.
+
+The submitted manuscript PDF, LaTeX manuscript source, supplementary manuscript PDF/source, cover letter and other journal-submission files are intentionally excluded from the public release while the article is under peer review.
 
 ## Notes
 

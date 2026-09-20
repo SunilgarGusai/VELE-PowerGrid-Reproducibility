@@ -1,0 +1,97 @@
+name: MATPOWER 8.1 / Octave validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'validation/**'
+      - '.github/workflows/matpower-octave-validation.yml'
+      - 'requirements.txt'
+  pull_request:
+    paths:
+      - 'validation/**'
+      - '.github/workflows/matpower-octave-validation.yml'
+      - 'requirements.txt'
+
+jobs:
+  validate-dcpf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 pandas==2.2.3
+
+      - name: Install GNU Octave
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y octave unzip curl
+          octave --version | head -5
+
+      - name: Download and verify MATPOWER 8.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/matpower_download"
+          curl -L --fail --retry 3 \
+            -o "$RUNNER_TEMP/matpower8.1.zip" \
+            https://github.com/MATPOWER/matpower/releases/download/8.1/matpower8.1.zip
+          echo '7f13b1441669a64e312d14a60e564cd91977ff1676ff77d25538e94ff313dd56  '"$RUNNER_TEMP/matpower8.1.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/matpower8.1.zip" -d "$RUNNER_TEMP/matpower_download"
+          MP_HOME=$(find "$RUNNER_TEMP/matpower_download" -maxdepth 2 -type f -name 'rundcpf.m' -printf '%h\n' | sed 's#/lib$##' | head -1)
+          if [ -z "$MP_HOME" ]; then
+            MP_HOME=$(find "$RUNNER_TEMP/matpower_download" -maxdepth 2 -type d -name 'matpower*' | head -1)
+          fi
+          test -n "$MP_HOME"
+          test -f "$MP_HOME/data/case14.m"
+          echo "MATPOWER_HOME=$MP_HOME" >> "$GITHUB_ENV"
+          echo "MATPOWER_HOME=$MP_HOME"
+
+      - name: Generate independent NumPy DC reference
+        run: |
+          rm -rf validation/artifacts
+          python validation/python_dcpf_reference.py \
+            --matpower-data "$MATPOWER_HOME/data" \
+            --output validation/artifacts/python
+
+      - name: Run executable MATPOWER 8.1 under GNU Octave
+        env:
+          MATPOWER_HOME: ${{ env.MATPOWER_HOME }}
+        run: |
+          octave --quiet validation/run_matpower_crosscheck.m
+
+      - name: Compare MATPOWER and Python solutions
+        run: |
+          python validation/compare_matpower_python.py \
+            --python-dir validation/artifacts/python \
+            --matpower-dir validation/artifacts/matpower \
+            --output validation/artifacts/comparison \
+            --angle-tol 1e-8 \
+            --flow-tol 1e-8
+
+      - name: Publish validation summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f validation/artifacts/comparison/MATPOWER_OCTAVE_VALIDATION_REPORT.md ]; then
+            cat validation/artifacts/comparison/MATPOWER_OCTAVE_VALIDATION_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload validation artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: matpower-octave-crosscheck
+          path: validation/artifacts/
+          if-no-files-found: warn

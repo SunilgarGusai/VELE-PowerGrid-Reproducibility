@@ -1,44 +1,90 @@
 # Quick start
 
+This `main` branch is the live reviewer-facing verification layer for the VELE power-grid study. It contains the executable MATPOWER/Octave cross-check, pinned environment information, benchmark provenance, selected portable stage code, and frozen branch-outage summary outputs. The complete journal-submission snapshot will be frozen separately as the `v1.0.0-submission` release before submission.
+
 ## 1. Python environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate the environment and install the pinned dependencies:
+Activate the environment, then install the pinned dependencies:
 
 ```bash
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-## 2. Verify the repository
+## 2. Local smoke checks
+
+The public validation utilities should import and expose their command-line interfaces:
 
 ```bash
-python reproduction/run_all.py --mode verify
+python validation/python_dcpf_reference.py --help
+python validation/compare_matpower_python.py --help
 ```
 
-## 3. Reproduce the post-review analyses
+The repository's **Repository verification** GitHub Actions workflow performs these checks automatically on every push to `main` and on pull requests.
 
-```bash
-python reproduction/run_all.py --mode reproduce-postreview
+## 3. Inspect the executable MATPOWER evidence
+
+The successful MATPOWER 8.1 / GNU Octave run is summarized in:
+
+```text
+validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md
+validation/results/matpower_octave_crosscheck_summary.csv
 ```
 
-## 4. Reproduce the 784 physical-branch outage extension
+The workflow itself is:
 
-```bash
-python reproduction/run_all.py --mode reproduce-branch
+```text
+.github/workflows/matpower-octave-validation.yml
 ```
 
-## 5. Executable MATPOWER cross-check
+It downloads and SHA-256 verifies the official MATPOWER 8.1 release, runs `rundcpf` under GNU Octave for IEEE14/30/39/57/118/300, independently computes the same intact DC solutions in NumPy, compares bus angles and branch active-power flows, and fails if the declared tolerances are exceeded.
 
-The GitHub Actions workflow `.github/workflows/matpower-octave-validation.yml` runs an independent executable MATPOWER 8.1 `rundcpf` cross-check under GNU Octave in a clean Ubuntu runner. It compares MATPOWER bus angles and branch active-power flows against an independent NumPy implementation of the same DC equations.
+To rerun it, use the repository **Actions** tab and choose **MATPOWER 8.1 / Octave validation → Run workflow**.
 
-The workflow can also be run manually from the repository's **Actions** tab.
+## 4. Inspect the physical-branch outage extension
+
+Reviewer-facing frozen summaries are under:
+
+```text
+stages/07_branch_outage_validation/outputs/
+```
+
+The main network summary is:
+
+```text
+branch_n1_network_summary.csv
+```
+
+and the associated methodology/interpretation note is:
+
+```text
+docs/PHASE11_BRANCH_OUTAGE_REPORT.md
+```
+
+These outputs cover all 784 active physical branch rows. The public documentation explicitly distinguishes branch N-1 screening from a full security-constrained N-1 assessment.
+
+## 5. Data provenance and licensing
+
+See:
+
+```text
+docs/DATA_SOURCE_MANIFEST.md
+THIRD_PARTY_LICENSES.md
+LICENSE
+```
+
+No missing thermal ratings are fabricated, and the simple structural graph is kept distinct from the physical-branch electrical representation.
+
+## 6. Submission snapshot
+
+The complete manuscript-associated archive—including the full staged inputs/outputs, portable reproduction entry points, manuscript builders, and claim-traceability material—is intended to be attached to the frozen `v1.0.0-submission` GitHub release before journal submission. Until that release is present, treat `main` as the continuously verified public validation/provenance layer rather than as the complete archival submission bundle.
 
 ## Notes
 
 - Reviewer-facing scripts use repository-relative paths.
-- Historical development scripts, where retained, are separated from the executable workflow.
-- Hypothetical candidate lines are structural heuristics only; no reactance, thermal rating, geography or cost is invented for them.
+- Hypothetical candidate lines are structural heuristics only; no reactance, thermal rating, geography, or cost is invented for them.
+- The executable MATPOWER check validates the intact DC equations and branch-flow implementation. Custom island handling, redispatch, and load-curtailment proxies are separate study components and are not represented as native MATPOWER security-analysis functionality.

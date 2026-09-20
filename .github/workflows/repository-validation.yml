@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
@@ -42,6 +42,7 @@ jobs:
           test -f validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md
           test -f validation/results/matpower_octave_crosscheck_summary.csv
           test -f stages/01_matpower_preparation/scripts/prepare_phase2.py
+          test -f stages/07_branch_outage_validation/README.md
           test -f stages/07_branch_outage_validation/outputs/branch_n1_network_summary.csv
           test -f stages/07_branch_outage_validation/outputs/branch_n1_redispatch_sensitivity_summary.csv
           test -f stages/07_branch_outage_validation/outputs/branch_n1_vele_correlations.csv

@@ -68,3 +68,12 @@ Citation metadata are provided in `CITATION.cff`. The exact manuscript-associate
 ## License and third-party data
 
 Custom analysis code is released under the MIT License. MATPOWER software and benchmark materials retain their original upstream terms; see `THIRD_PARTY_LICENSES.md` and `docs/DATA_SOURCE_MANIFEST.md`. The repository does not relicense MATPOWER case data.
+
+## Academic profile and related research
+
+This repository is part of the open-research programme of **Dr. Sunilgar L. Gusai**, spanning spectral graph theory, network science and reproducible computational modelling.
+
+- Academic portfolio: https://sunilgargusai.github.io/sunilgar-portfolio/
+- GitHub profile: https://github.com/SunilgarGusai
+- ORCID: https://orcid.org/0009-0004-0739-4812
+- Related reproducibility repository: https://github.com/SunilgarGusai/PAPER-JCMM-reproducibility

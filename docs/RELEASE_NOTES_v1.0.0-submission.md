@@ -1,8 +1,8 @@
-# v1.0.0-submission — planned frozen journal-submission release
+# v1.0.0-submission — frozen journal-submission release candidate
 
 ## Purpose
 
-This release is intended to identify the exact reproducibility state associated with the journal submission of:
+This release is prepared to identify the exact reproducibility state associated with the journal submission of:
 
 **Vertex Eccentricity Labeled Energy for Power-Grid Vulnerability Screening with DC-Flow Validation**
 
@@ -43,16 +43,23 @@ This executable check validates the intact DC equations and branch-flow implemen
 
 The electrical layer retains physical branch multiplicity while the structural VELE graph is simple and undirected. In the frozen branch screen, 22 active branch rows belong to parallel pairs. Every one of those 22 single-circuit trips leaves the simple structural edge intact and therefore has zero VELE stress despite nonzero DC-flow redistribution. Overall, 269 of 784 physical branch outages have numerically zero bounded VELE stress.
 
-## Planned release assets
+## Verified release assets
 
-The final `v1.0.0-submission` release should contain, at minimum:
+The release candidate has been assembled and fresh-extraction verified. The intended assets are:
 
-1. `VELE_REPRODUCIBILITY_v1.0.0-submission.zip` — complete staged reproducibility archive corresponding to the submitted paper;
-2. `VELE_MANUSCRIPT_SOURCE_v1.0.0-submission.zip` — exact manuscript source used for the submitted PDF;
-3. `SHA256SUMS.txt` — SHA-256 checksums for every attached release asset;
-4. `MAIN.pdf` — submitted manuscript PDF, when journal policy permits repository posting;
-5. `SUPPLEMENTARY_MATERIAL.pdf` — submitted supplementary PDF;
-6. optional raw GitHub Actions cross-check artifacts from the frozen validation run.
+1. `VELE_REPOSITORY_v1.0.0-submission.zip` — complete 509-file staged reproducibility archive;
+2. `VELE_MANUSCRIPT_SOURCE_v1.0.0-submission.zip` — exact reconstructed submission manuscript source;
+3. `SHA256SUMS.txt` — SHA-256 checksums for all release assets;
+4. `MAIN.pdf` — compiled manuscript PDF;
+5. `SUPPLEMENTARY_MATERIAL.pdf` — compiled supplementary PDF;
+6. `MATPOWER_reference_run_35531005040.zip` — archived reference CI artifact;
+7. `MATPOWER_repeat_run_35533409590.zip` — archived repeat CI artifact.
+
+The exact asset hashes are committed in `docs/RELEASE_ASSET_SHA256SUMS.txt`.
+
+## Verification status
+
+The exact repository ZIP was extracted into a clean directory and `python reproduction/run_all.py --mode verify` passed, including all seven technical stages, literature audit, manuscript consistency, repeated MATPOWER evidence and reviewer-facing portability checks.
 
 ## Freeze rule
 

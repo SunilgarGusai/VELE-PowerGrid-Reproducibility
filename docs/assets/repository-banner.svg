@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">VELE Power-Grid Vulnerability Screening</title>
+  <desc id="desc">Repository banner showing a stylized power-grid network and the study themes of spectral screening, DC-flow validation, and reproducible contingency analysis.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0a1f33"/>
+      <stop offset="0.56" stop-color="#123f63"/>
+      <stop offset="1" stop-color="#12676f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0" stop-color="#65c7ff"/>
+      <stop offset="1" stop-color="#7ce6be"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="300" rx="26" fill="url(#bg)"/>
+  <circle cx="1020" cy="72" r="130" fill="#67d5ff" opacity="0.09" filter="url(#soft)"/>
+  <circle cx="1112" cy="238" r="150" fill="#65e0b8" opacity="0.09" filter="url(#soft)"/>
+
+  <g transform="translate(70 55)">
+    <text x="0" y="42" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="44" font-weight="700" fill="#ffffff">VELE Power-Grid Vulnerability Screening</text>
+    <text x="0" y="88" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="22" fill="#d2ebf5">Eccentricity-sensitive structural diagnostics with DC-flow validation</text>
+    <rect x="0" y="119" width="720" height="2" fill="url(#accent)" opacity="0.95"/>
+    <text x="0" y="157" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" fill="#dceff6">MATPOWER 8.1  •  spectral graph screening  •  bus and branch outages</text>
+    <text x="0" y="187" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" fill="#dceff6">DC-flow redistribution  •  service-loss proxies  •  executable CI validation</text>
+  </g>
+
+  <g transform="translate(900 48)" fill="none" stroke="url(#accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="42" y1="88" x2="104" y2="45"/>
+    <line x1="104" y1="45" x2="171" y2="74"/>
+    <line x1="171" y1="74" x2="216" y2="132"/>
+    <line x1="216" y1="132" x2="173" y2="190"/>
+    <line x1="173" y1="190" x2="99" y2="172"/>
+    <line x1="99" y1="172" x2="42" y2="88"/>
+    <line x1="104" y1="45" x2="99" y2="172"/>
+    <line x1="171" y1="74" x2="99" y2="172"/>
+    <line x1="42" y1="88" x2="173" y2="190" opacity="0.55"/>
+    <line x1="171" y1="74" x2="265" y2="56" opacity="0.65"/>
+    <line x1="216" y1="132" x2="276" y2="166" opacity="0.65"/>
+    <circle cx="42" cy="88" r="13" fill="#0f314d"/>
+    <circle cx="104" cy="45" r="13" fill="#0f314d"/>
+    <circle cx="171" cy="74" r="13" fill="#0f314d"/>
+    <circle cx="216" cy="132" r="13" fill="#0f314d"/>
+    <circle cx="173" cy="190" r="13" fill="#0f314d"/>
+    <circle cx="99" cy="172" r="13" fill="#0f314d"/>
+    <circle cx="265" cy="56" r="10" fill="#0f314d"/>
+    <circle cx="276" cy="166" r="10" fill="#0f314d"/>
+  </g>
+</svg>

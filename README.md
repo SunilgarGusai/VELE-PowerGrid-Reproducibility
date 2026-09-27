@@ -53,7 +53,11 @@ These are part of the scientific conclusion, not exceptions hidden from it.
 The study uses a **dual representation** of each MATPOWER case: a simple structural graph for VELE and comparators, and a physical electrical representation retaining branch reactance, taps/phase shifts, generation, demand, circuit multiplicity and ratings where available.
 
 <p align="center">
-  <img src="docs/assets/vele-workflow.svg" alt="Hybrid structural-electrical VELE validation workflow" width="100%" />
+  <img src="docs/assets/vele-workflow-animated.svg" alt="Animated hybrid structural-electrical VELE validation workflow" width="100%" />
+</p>
+
+<p align="center">
+  <sub>The moving path highlight is decorative; the scientific workflow is unchanged. <a href="docs/assets/vele-workflow.svg">Open the static high-resolution SVG</a>.</sub>
 </p>
 
 Candidate-line heuristics are evaluated separately from downstream electrical feasibility. Direct-VELE, VCB-VELE and DCP-VELE are **structural candidate-screening rules**; the study does not invent unsupported electrical parameters, costs or planning constraints for hypothetical lines.

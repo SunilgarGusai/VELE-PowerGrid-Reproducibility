@@ -1,73 +1,109 @@
 # Quick start
 
-This `main` branch is the live reviewer-facing verification layer for the VELE power-grid study. It contains the executable MATPOWER/Octave cross-check, pinned environment information, benchmark provenance, selected portable stage code, and frozen branch-outage summary outputs. The complete public reproducibility snapshot is frozen separately as the `v1.0.0-submission` release.
+This repository has two public layers:
 
-## 1. Python environment
+1. the live `main` branch — compact reviewer-facing validation, provenance and key results; and
+2. the frozen [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) release — the complete public computational submission snapshot.
+
+If you only want to understand the study, start with `README.md`, then `docs/METHOD_PROTOCOL.md` and `docs/FROZEN_RESULTS.md`.
+
+## 1. Create the environment
+
+### Conda
+
+```bash
+conda env create -f environment.yml
+conda activate vele-powergrid
+```
+
+### Or pip/venv
 
 ```bash
 python -m venv .venv
-```
-
-Activate the environment, then install the pinned dependencies:
-
-```bash
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-## 2. Local smoke checks
+## 2. Validate the reviewer-facing artifact
 
-The public validation utilities should import and expose their command-line interfaces:
+```bash
+python scripts/validate_public_artifact.py
+```
+
+This checks the curated repository manifest, key presentation/documentation assets, the six-case MATPOWER cross-check summary and the aggregate 784-branch invariants.
+
+## 3. Smoke-check the public DC utilities
 
 ```bash
 python validation/python_dcpf_reference.py --help
 python validation/compare_matpower_python.py --help
 ```
 
-The repository's **Repository verification** GitHub Actions workflow performs these checks automatically on every push to `main` and on pull requests.
+The **Repository verification** GitHub Actions workflow performs these checks automatically on pull requests and pushes to `main`.
 
-## 3. Inspect the executable MATPOWER evidence
+## 4. Inspect executable MATPOWER evidence
 
-The successful MATPOWER 8.1 / GNU Octave run is summarized in:
+Reference files:
 
 ```text
 validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md
 validation/results/matpower_octave_crosscheck_summary.csv
+validation/results/MATPOWER_OCTAVE_REPEATABILITY_NOTE.md
+validation/results/matpower_octave_crosscheck_summary_run_35533409590.csv
 ```
 
-The workflow itself is:
+Workflow:
 
 ```text
 .github/workflows/matpower-octave-validation.yml
 ```
 
-It downloads and SHA-256 verifies the official MATPOWER 8.1 release, runs `rundcpf` under GNU Octave for IEEE14/30/39/57/118/300, independently computes the same intact DC solutions in NumPy, compares bus angles and branch active-power flows, and fails if the declared tolerances are exceeded.
+The workflow downloads and checksum-verifies the official MATPOWER 8.1 release, runs `rundcpf` under GNU Octave for IEEE14/30/39/57/118/300, independently solves the same intact DC equations in NumPy, compares bus angles and branch active-power flows, and fails if the declared tolerances are exceeded.
 
-To rerun it, use the repository **Actions** tab and choose **MATPOWER 8.1 / Octave validation → Run workflow**.
+To rerun it, open **Actions → MATPOWER 8.1 / Octave validation → Run workflow**.
 
-## 4. Inspect the physical-branch outage extension
+## 5. Inspect the physical-branch extension
 
-Reviewer-facing frozen summaries are under:
+Reviewer-facing frozen outputs are under:
 
 ```text
 stages/07_branch_outage_validation/outputs/
 ```
 
-The main network summary is:
+The most useful files are:
 
 ```text
 branch_n1_network_summary.csv
+branch_n1_vele_correlations.csv
+branch_n1_vele_event_auc.csv
+branch_n1_redispatch_sensitivity_summary.csv
 ```
 
-and the associated methodology/interpretation note is:
+The corresponding interpretation notes are:
 
 ```text
 docs/PHASE11_BRANCH_OUTAGE_REPORT.md
+stages/07_branch_outage_validation/README.md
 ```
 
-These outputs cover all 784 active physical branch rows. The public documentation explicitly distinguishes branch N-1 screening from a full security-constrained N-1 assessment.
+These outputs cover all **784 active physical branch rows**. The documentation explicitly distinguishes this screening experiment from a full security-constrained N-1 assessment.
 
-## 5. Data provenance and licensing
+## 6. Follow the result map
+
+For a compact route from claims to files, use:
+
+```text
+docs/FROZEN_RESULTS.md
+REPOSITORY_MANIFEST.csv
+```
+
+The repository banner and workflow visuals are under:
+
+```text
+docs/assets/
+```
+
+## 7. Data provenance and licensing
 
 See:
 
@@ -79,14 +115,15 @@ LICENSE
 
 No missing thermal ratings are fabricated, and the simple structural graph is kept distinct from the physical-branch electrical representation.
 
-## 6. Frozen public reproducibility release
+## 8. Complete frozen public snapshot
 
-The `v1.0.0-submission` release contains the complete public computational archive: staged inputs/outputs, portable reproduction entry points, validation evidence, technical documentation and checksums.
+The `v1.0.0-submission` release contains the fuller staged computational archive, portable reproduction entry points, validation evidence, technical documentation and checksums.
 
-The submitted manuscript PDF, LaTeX manuscript source, supplementary manuscript PDF/source, cover letter and other journal-submission files are intentionally excluded from the public release while the article is under peer review.
+The submitted manuscript PDF/source, supplementary manuscript files, cover letter and journal-submission files are intentionally excluded from the public release during peer review.
 
-## Notes
+## Important interpretation notes
 
-- Reviewer-facing scripts use repository-relative paths.
-- Hypothetical candidate lines are structural heuristics only; no reactance, thermal rating, geography, or cost is invented for them.
-- The executable MATPOWER check validates the intact DC equations and branch-flow implementation. Custom island handling, redispatch, and load-curtailment proxies are separate study components and are not represented as native MATPOWER security-analysis functionality.
+- VELE is evaluated as a **complementary structural diagnostic**, not a replacement for electrical security analysis.
+- Hypothetical candidate lines are structural heuristics only; no unsupported reactance, rating, geography or cost is invented.
+- The executable MATPOWER cross-check validates intact DC equations and branch-flow implementation. Custom island handling, redispatch and load-curtailment proxies remain separate study components.
+- A simple structural graph cannot represent the loss of one circuit when a parallel circuit remains in service; this limitation is quantified explicitly in the frozen results.

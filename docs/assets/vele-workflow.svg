@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560" role="img" aria-labelledby="title desc">
+  <title id="title">VELE structural-electrical validation workflow</title>
+  <desc id="desc">Workflow from MATPOWER benchmarks through structural and electrical representations, outage screening, DC-flow validation, comparative analysis, and separate structural line-candidate screening.</desc>
+  <defs>
+    <linearGradient id="header" x1="0" x2="1"><stop offset="0" stop-color="#123f63"/><stop offset="1" stop-color="#12676f"/></linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#476579"/></marker>
+    <style>
+      .box{fill:#f8fbfd;stroke:#476579;stroke-width:2.3;rx:16;ry:16}.box2{fill:#f2faf7;stroke:#3f7f72;stroke-width:2.3;rx:16;ry:16}.dash{fill:#fbfbfb;stroke:#7c858c;stroke-width:2.3;stroke-dasharray:9 7;rx:16;ry:16}.t{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#183443;font-size:22px}.h{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#0d2a3a;font-size:24px;font-weight:700}.small{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#4c626f;font-size:18px}.a{stroke:#476579;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1400" height="68" rx="18" fill="url(#header)"/>
+  <text x="700" y="43" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="28" font-weight="700" fill="#fff">Hybrid structural–electrical validation architecture</text>
+
+  <rect class="box" x="35" y="130" width="220" height="120"/>
+  <text class="h" x="145" y="166" text-anchor="middle">MATPOWER 8.1</text>
+  <text class="t" x="145" y="198" text-anchor="middle">IEEE 14 / 30 / 39</text>
+  <text class="t" x="145" y="228" text-anchor="middle">57 / 118 / 300</text>
+
+  <rect class="box" x="315" y="105" width="250" height="145"/>
+  <text class="h" x="440" y="142" text-anchor="middle">Structural layer</text>
+  <text class="t" x="440" y="178" text-anchor="middle">simple graph + VELE</text>
+  <text class="t" x="440" y="210" text-anchor="middle">centrality / spectral</text>
+  <text class="t" x="440" y="238" text-anchor="middle">comparators</text>
+
+  <rect class="box2" x="315" y="300" width="250" height="145"/>
+  <text class="h" x="440" y="337" text-anchor="middle">Electrical layer</text>
+  <text class="t" x="440" y="373" text-anchor="middle">reactance, taps, shifts</text>
+  <text class="t" x="440" y="405" text-anchor="middle">generation + load</text>
+  <text class="t" x="440" y="433" text-anchor="middle">RATE_A where available</text>
+
+  <rect class="box" x="625" y="105" width="245" height="145"/>
+  <text class="h" x="747" y="142" text-anchor="middle">Outage screening</text>
+  <text class="t" x="747" y="178" text-anchor="middle">558 bus outages</text>
+  <text class="t" x="747" y="210" text-anchor="middle">784 branch outages</text>
+  <text class="t" x="747" y="238" text-anchor="middle">1,692 progressive states</text>
+
+  <rect class="box2" x="625" y="300" width="245" height="145"/>
+  <text class="h" x="747" y="337" text-anchor="middle">DC-flow evaluation</text>
+  <text class="t" x="747" y="373" text-anchor="middle">island-aware solving</text>
+  <text class="t" x="747" y="405" text-anchor="middle">redispatch + service</text>
+  <text class="t" x="747" y="433" text-anchor="middle">flow / loading proxies</text>
+
+  <rect class="box" x="930" y="105" width="245" height="145"/>
+  <text class="h" x="1052" y="142" text-anchor="middle">Agreement analysis</text>
+  <text class="t" x="1052" y="178" text-anchor="middle">rank correlation</text>
+  <text class="t" x="1052" y="210" text-anchor="middle">event ROC-AUC</text>
+  <text class="t" x="1052" y="238" text-anchor="middle">sensitivity + runtime</text>
+
+  <rect class="box" x="930" y="300" width="245" height="145"/>
+  <text class="h" x="1052" y="337" text-anchor="middle">Candidate heuristics</text>
+  <text class="t" x="1052" y="373" text-anchor="middle">Direct / VCB / DCP</text>
+  <text class="t" x="1052" y="405" text-anchor="middle">attack-AUC change</text>
+  <text class="t" x="1052" y="433" text-anchor="middle">distance-bias tradeoff</text>
+
+  <rect class="dash" x="1220" y="300" width="150" height="145"/>
+  <text class="h" x="1295" y="337" text-anchor="middle">Downstream</text>
+  <text class="small" x="1295" y="373" text-anchor="middle">feasibility</text>
+  <text class="small" x="1295" y="402" text-anchor="middle">cost / OPF</text>
+  <text class="small" x="1295" y="431" text-anchor="middle">planning</text>
+
+  <path class="a" d="M255 190 H300"/>
+  <path class="a" d="M255 210 C282 210 282 372 300 372"/>
+  <path class="a" d="M565 175 H610"/>
+  <path class="a" d="M565 372 H610"/>
+  <path class="a" d="M870 175 H915"/>
+  <path class="a" d="M870 372 C900 372 900 225 915 225"/>
+  <path class="a" d="M565 205 C760 260 780 330 915 372"/>
+  <path class="a" d="M1175 372 H1205"/>
+
+  <text class="small" x="700" y="510" text-anchor="middle">VELE is evaluated as a complementary structural diagnostic; downstream electrical feasibility and planning remain outside the line-candidate experiment.</text>
+</svg>

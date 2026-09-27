@@ -1,0 +1,39 @@
+path,category,role
+README.md,landing,Scientific overview and reviewer navigation
+QUICKSTART.md,reproducibility,Minimal reviewer-facing commands
+CITATION.cff,citation,Citation metadata and preferred manuscript citation
+LICENSE,licensing,Original-code licence
+THIRD_PARTY_LICENSES.md,licensing,Third-party software and data terms
+requirements.txt,environment,Pinned pip dependencies
+environment.yml,environment,Conda environment specification
+config/study_scope.yml,configuration,Frozen high-level study scope and validation tolerances
+docs/assets/repository-banner.svg,visual,Repository hero banner
+docs/assets/vele-workflow.svg,visual,Static structural-electrical workflow
+docs/assets/parallel-circuit-blindspot.svg,visual,Physical-circuit multiplicity limitation
+docs/METHOD_PROTOCOL.md,method,Frozen computational protocol
+docs/FROZEN_RESULTS.md,results,Headline frozen-result inventory and source map
+docs/REPRODUCIBILITY.md,reproducibility,Main-branch and release verification guide
+docs/DATA_SOURCE_MANIFEST.md,provenance,MATPOWER source and benchmark provenance
+docs/DATA_PROVENANCE.md,provenance,Human-readable benchmark provenance narrative
+docs/LICENSE_AND_USAGE.md,licensing,Usage and third-party boundary guide
+docs/PHASE11_BRANCH_OUTAGE_REPORT.md,results,Physical-branch outage extension report
+docs/RELEASE_NOTES_v1.0.0-submission.md,release,Frozen public release notes
+docs/RELEASE_ASSET_SHA256SUMS.txt,integrity,Release asset checksums
+docs/SUBMISSION_FREEZE_STATUS.md,release,Public submission-freeze status
+scripts/validate_public_artifact.py,verification,Manifest and frozen-evidence validator
+validation/README.md,validation,Executable MATPOWER cross-check guide
+validation/python_dcpf_reference.py,validation,Independent NumPy DC reference solver
+validation/compare_matpower_python.py,validation,MATPOWER versus NumPy comparator
+validation/run_matpower_crosscheck.m,validation,Executable MATPOWER/Octave driver
+validation/results/MATPOWER_OCTAVE_VALIDATION_REPORT.md,validation,Reference executable validation report
+validation/results/MATPOWER_OCTAVE_REPEATABILITY_NOTE.md,validation,Repeated-run floating-point interpretation
+validation/results/matpower_octave_crosscheck_summary.csv,results,Reference six-case validation summary
+validation/results/matpower_octave_crosscheck_summary_run_35533409590.csv,results,Repeat six-case validation summary
+stages/01_matpower_preparation/scripts/prepare_phase2.py,code,MATPOWER parsing and preparation utility
+stages/07_branch_outage_validation/README.md,method,Physical-branch outage scope and limitations
+stages/07_branch_outage_validation/outputs/branch_n1_network_summary.csv,results,Network-level branch-outage summary
+stages/07_branch_outage_validation/outputs/branch_n1_vele_correlations.csv,results,Branch VELE versus electrical correlations
+stages/07_branch_outage_validation/outputs/branch_n1_vele_event_auc.csv,results,Branch event-discrimination results
+stages/07_branch_outage_validation/outputs/branch_n1_redispatch_sensitivity_summary.csv,results,Branch redispatch sensitivity summary
+.github/workflows/repository-validation.yml,ci,Repository structure and numerical evidence checks
+.github/workflows/matpower-octave-validation.yml,ci,Executable MATPOWER 8.1 / GNU Octave validation

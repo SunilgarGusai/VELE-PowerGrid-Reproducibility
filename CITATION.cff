@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite the associated article and the frozen v1.0.0-submission reproducibility release."
-title: "VELE Power-Grid Vulnerability Screening — Reproducibility Repository"
+message: "If you use this software or frozen research outputs, please cite the associated manuscript and the frozen v1.0.0-submission reproducibility release."
+title: "VELE Power-Grid Vulnerability Screening"
 type: software
 authors:
   - family-names: Gusai
@@ -8,11 +8,12 @@ authors:
     orcid: "https://orcid.org/0009-0004-0739-4812"
   - family-names: Jadeja
     given-names: Manoharsinh R.
+    orcid: "https://orcid.org/0000-0003-1833-4730"
 repository-code: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility"
 url: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission"
 version: "1.0.0-submission"
 date-released: 2026-09-21
-abstract: "Public computational reproducibility materials supporting the manuscript Vertex Eccentricity Labeled Energy for Power-Grid Vulnerability Screening with DC-Flow Validation. The v1.0.0-submission release contains the frozen public-safe staged code, machine-readable outputs, executable MATPOWER 8.1/GNU Octave validation evidence, benchmark provenance, technical documentation and integrity checks. The submitted manuscript PDF/source and journal-submission files are intentionally excluded from the public release during peer review."
+abstract: "Public computational reproducibility materials for a VELE-based power-grid vulnerability-screening study using six IEEE/MATPOWER benchmark systems, structural and electrical outage analyses, executable MATPOWER 8.1/GNU Octave validation, and explicit topology-only limitations. The submitted manuscript PDF/source and journal-submission files are intentionally excluded from the public release during peer review."
 keywords:
   - power systems
   - vulnerability screening
@@ -20,3 +21,14 @@ keywords:
   - MATPOWER
   - DC power flow
   - reproducibility
+preferred-citation:
+  type: article
+  title: "Computational Power-Grid Vulnerability Screening Using Vertex Eccentricity Labeled Energy and DC-Flow Validation"
+  authors:
+    - family-names: Gusai
+      given-names: Sunilgar L.
+      orcid: "https://orcid.org/0009-0004-0739-4812"
+    - family-names: Jadeja
+      given-names: Manoharsinh R.
+      orcid: "https://orcid.org/0000-0003-1833-4730"
+  notes: "Manuscript prepared for journal submission. Bibliographic publication metadata and DOI will be added after publication."

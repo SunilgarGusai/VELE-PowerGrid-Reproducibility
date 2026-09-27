@@ -33,8 +33,18 @@ jobs:
           test -f LICENSE
           test -f THIRD_PARTY_LICENSES.md
           test -f requirements.txt
+          test -f environment.yml
+          test -f REPOSITORY_MANIFEST.csv
+          test -f config/study_scope.yml
           test -f docs/DATA_SOURCE_MANIFEST.md
           test -f docs/PHASE11_BRANCH_OUTAGE_REPORT.md
+          test -f docs/METHOD_PROTOCOL.md
+          test -f docs/FROZEN_RESULTS.md
+          test -f docs/REPRODUCIBILITY.md
+          test -f docs/assets/repository-banner.svg
+          test -f docs/assets/vele-workflow.svg
+          test -f docs/assets/parallel-circuit-blindspot.svg
+          test -f scripts/validate_public_artifact.py
           test -f validation/python_dcpf_reference.py
           test -f validation/compare_matpower_python.py
           test -f validation/run_matpower_crosscheck.m
@@ -50,6 +60,7 @@ jobs:
 
       - name: Python syntax check
         run: |
+          python -m py_compile scripts/validate_public_artifact.py
           python -m py_compile validation/python_dcpf_reference.py
           python -m py_compile validation/compare_matpower_python.py
           python -m py_compile stages/01_matpower_preparation/scripts/prepare_phase2.py
@@ -58,6 +69,10 @@ jobs:
         run: |
           python validation/python_dcpf_reference.py --help
           python validation/compare_matpower_python.py --help
+
+      - name: Validate curated public artifact
+        run: |
+          python scripts/validate_public_artifact.py
 
       - name: Verify committed numerical evidence
         run: |
@@ -105,7 +120,8 @@ jobs:
         run: |
           echo '## Repository verification' >> "$GITHUB_STEP_SUMMARY"
           echo '- Pinned Python environment installs: PASS' >> "$GITHUB_STEP_SUMMARY"
-          echo '- Required reviewer-facing files: PASS' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Publication-grade reviewer-facing files: PASS' >> "$GITHUB_STEP_SUMMARY"
+          echo '- Curated repository manifest: PASS' >> "$GITHUB_STEP_SUMMARY"
           echo '- Python validation scripts compile: PASS' >> "$GITHUB_STEP_SUMMARY"
           echo '- CLI smoke tests: PASS' >> "$GITHUB_STEP_SUMMARY"
           echo '- Committed MATPOWER cross-check evidence: PASS' >> "$GITHUB_STEP_SUMMARY"

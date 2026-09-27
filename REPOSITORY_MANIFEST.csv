@@ -1,7 +1,7 @@
 path,category,role
 README.md,landing,Scientific overview and reviewer navigation
 QUICKSTART.md,reproducibility,Minimal reviewer-facing commands
-CITATION.cff,citation,Citation metadata
+CITATION.cff,citation,Citation metadata and preferred manuscript citation
 LICENSE,licensing,Original-code licence
 THIRD_PARTY_LICENSES.md,licensing,Third-party software and data terms
 requirements.txt,environment,Pinned pip dependencies
@@ -14,10 +14,13 @@ docs/METHOD_PROTOCOL.md,method,Frozen computational protocol
 docs/FROZEN_RESULTS.md,results,Headline frozen-result inventory and source map
 docs/REPRODUCIBILITY.md,reproducibility,Main-branch and release verification guide
 docs/DATA_SOURCE_MANIFEST.md,provenance,MATPOWER source and benchmark provenance
+docs/DATA_PROVENANCE.md,provenance,Human-readable benchmark provenance narrative
+docs/LICENSE_AND_USAGE.md,licensing,Usage and third-party boundary guide
 docs/PHASE11_BRANCH_OUTAGE_REPORT.md,results,Physical-branch outage extension report
 docs/RELEASE_NOTES_v1.0.0-submission.md,release,Frozen public release notes
 docs/RELEASE_ASSET_SHA256SUMS.txt,integrity,Release asset checksums
 docs/SUBMISSION_FREEZE_STATUS.md,release,Public submission-freeze status
+scripts/validate_public_artifact.py,verification,Manifest and frozen-evidence validator
 validation/README.md,validation,Executable MATPOWER cross-check guide
 validation/python_dcpf_reference.py,validation,Independent NumPy DC reference solver
 validation/compare_matpower_python.py,validation,MATPOWER versus NumPy comparator

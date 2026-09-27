@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Parallel-circuit blind spot in simple-graph VELE</title>
+  <desc id="desc">A physical transmission pair can lose one circuit while the simple graph remains unchanged, yielding zero VELE structural stress despite nonzero DC flow redistribution.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#506878"/></marker>
+    <style>
+      .h{font:700 25px Inter,Segoe UI,Arial,sans-serif;fill:#183443}.t{font:20px Inter,Segoe UI,Arial,sans-serif;fill:#314d5b}.s{font:17px Inter,Segoe UI,Arial,sans-serif;fill:#536a76}.node{fill:#123f63;stroke:#0a2638;stroke-width:2}.line{stroke:#3f7f72;stroke-width:6;stroke-linecap:round}.out{stroke:#b94a48;stroke-width:6;stroke-linecap:round;stroke-dasharray:11 8}.simple{stroke:#476579;stroke-width:7;stroke-linecap:round}.arrow{stroke:#506878;stroke-width:2.8;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="360" rx="22" fill="#f8fbfd" stroke="#d5e1e7"/>
+  <text class="h" x="600" y="42" text-anchor="middle">Why physical circuit multiplicity matters</text>
+
+  <text class="h" x="205" y="90" text-anchor="middle">Physical branch model</text>
+  <circle class="node" cx="90" cy="175" r="18"/><circle class="node" cx="320" cy="175" r="18"/>
+  <line class="line" x1="110" y1="158" x2="300" y2="158"/>
+  <line class="out" x1="110" y1="192" x2="300" y2="192"/>
+  <text class="t" x="205" y="238" text-anchor="middle">one circuit remains in service</text>
+  <text class="s" x="205" y="268" text-anchor="middle">electrical flows redistribute</text>
+
+  <path class="arrow" d="M360 175 H475"/>
+
+  <text class="h" x="610" y="90" text-anchor="middle">Simple structural graph</text>
+  <circle class="node" cx="520" cy="175" r="18"/><circle class="node" cx="700" cy="175" r="18"/>
+  <line class="simple" x1="540" y1="175" x2="680" y2="175"/>
+  <text class="t" x="610" y="238" text-anchor="middle">edge still exists</text>
+  <text class="s" x="610" y="268" text-anchor="middle">topology is unchanged</text>
+
+  <path class="arrow" d="M740 175 H855"/>
+
+  <text class="h" x="1010" y="90" text-anchor="middle">Observed consequence</text>
+  <rect x="880" y="130" width="260" height="112" rx="16" fill="#fff" stroke="#476579" stroke-width="2.2"/>
+  <text class="h" x="1010" y="172" text-anchor="middle">VELE stress = 0</text>
+  <text class="t" x="1010" y="208" text-anchor="middle">DC flow change ≠ 0</text>
+  <text class="s" x="600" y="326" text-anchor="middle">Frozen study: 22 active branch rows belong to parallel pairs; all 22 exhibit this structural blind spot under single-circuit outage.</text>
+</svg>

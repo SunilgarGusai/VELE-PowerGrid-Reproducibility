@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Reproducibility repository for</strong><br/>
-  <strong>Computational Power-Grid Vulnerability Screening Using Vertex Eccentricity Labeled Energy and DC-Flow Validation</strong>
+  <strong>Computational Graph Screening of Power-Grid Vulnerability with Vertex Eccentricity Labeled Energy and DC-Flow Validation</strong>
 </p>
 
 <p align="center">

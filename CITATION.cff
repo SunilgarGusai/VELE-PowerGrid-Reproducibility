@@ -23,7 +23,7 @@ keywords:
   - reproducibility
 preferred-citation:
   type: article
-  title: "Computational Power-Grid Vulnerability Screening Using Vertex Eccentricity Labeled Energy and DC-Flow Validation"
+  title: "Computational Graph Screening of Power-Grid Vulnerability with Vertex Eccentricity Labeled Energy and DC-Flow Validation"
   authors:
     - family-names: Gusai
       given-names: Sunilgar L.

@@ -3,7 +3,7 @@
 The VELE repository is organized around two complementary public layers:
 
 1. the live `main` branch, which is a compact reviewer-facing validation and provenance layer; and
-2. the frozen GitHub release `v1.0.0-submission`, which contains the complete public computational submission snapshot.
+2. the frozen GitHub release `v1.0.0-submission`, which contains the complete public computational snapshot prepared for manuscript submission.
 
 This distinction is intentional. It keeps the repository homepage navigable while preserving the fuller staged archive needed for traceability.
 
@@ -70,9 +70,9 @@ The public release
 
 `v1.0.0-submission`
 
-contains the complete public reproducibility archive behind the submitted study, including staged computational inputs/outputs, portable reproduction entry points, validation evidence, documentation and integrity checks.
+contains the complete public reproducibility archive supporting the manuscript-ready study, including staged computational inputs/outputs, portable reproduction entry points, validation evidence, documentation and integrity checks.
 
-The manuscript PDF/source, cover letter and journal-submission files are intentionally excluded from the public release during peer review.
+The manuscript PDF/source, cover letter and journal-portal files are intentionally excluded from the public reproducibility release.
 
 ## What is not claimed
 
@@ -83,7 +83,7 @@ The repository does not claim that:
 - the executable MATPOWER intact-case check validates the custom island/redispatch/load-curtailment methodology as native MATPOWER security analysis;
 - every historical development artifact is required to understand the frozen study.
 
-The public package is designed for transparent verification of the submitted computational evidence, not for presenting development clutter as scientific output.
+The public package is designed for transparent verification of the frozen computational evidence, not for presenting development clutter as scientific output.
 
 ## Data and third-party materials
 

@@ -151,7 +151,7 @@ The current `main` branch contains:
 
 The [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) release preserves the **complete public computational submission snapshot**, including staged inputs/outputs, portable reproduction entry points, validation evidence, technical documentation and integrity checks.
 
-The submitted manuscript PDF/source, cover letter and journal-submission files are intentionally excluded from the public release during peer review.
+The manuscript PDF/source, cover letter and journal-submission files are intentionally excluded from the public release. This repository is a scientific reproducibility artifact, not a mirror of the manuscript package.
 
 ### Environment
 
@@ -241,7 +241,7 @@ Important boundaries include:
 
 ## Release status
 
-**Current status: journal-submission reproducibility repository.**
+**Current status: frozen reproducibility repository supporting ongoing manuscript preparation.**
 
 The public computational state is frozen in release [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission). Publication metadata and a DOI can be added to `CITATION.cff` after publication without changing the frozen numerical evidence.
 

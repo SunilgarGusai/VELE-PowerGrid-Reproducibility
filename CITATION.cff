@@ -13,7 +13,7 @@ repository-code: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibilit
 url: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission"
 version: "1.0.0-submission"
 date-released: 2026-09-21
-abstract: "Public computational reproducibility materials for a VELE-based power-grid vulnerability-screening study using six IEEE/MATPOWER benchmark systems, structural and electrical outage analyses, executable MATPOWER 8.1/GNU Octave validation, and explicit topology-only limitations. The submitted manuscript PDF/source and journal-submission files are intentionally excluded from the public release during peer review."
+abstract: "Public computational reproducibility materials for a VELE-based power-grid vulnerability-screening study using six IEEE/MATPOWER benchmark systems, structural and electrical outage analyses, executable MATPOWER 8.1/GNU Octave validation, and explicit topology-only limitations. The manuscript PDF/source and journal-submission files are intentionally excluded from the public reproducibility release."
 keywords:
   - power systems
   - vulnerability screening

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/repository-banner.svg" alt="VELE Power-Grid Vulnerability Screening" width="100%" />
+  <img src="docs/assets/repository-banner.gif" alt="VELE Power-Grid Vulnerability Screening" width="100%" />
 </p>
 
 <h1 align="center">VELE Power-Grid Vulnerability Screening</h1>

@@ -37,3 +37,5 @@ stages/07_branch_outage_validation/outputs/branch_n1_vele_event_auc.csv,results,
 stages/07_branch_outage_validation/outputs/branch_n1_redispatch_sensitivity_summary.csv,results,Branch redispatch sensitivity summary
 .github/workflows/repository-validation.yml,ci,Repository structure and numerical evidence checks
 .github/workflows/matpower-octave-validation.yml,ci,Executable MATPOWER 8.1 / GNU Octave validation
+.github/workflows/render-repository-banner.yml,ci,Reproducible export of animated repository artwork
+docs/assets/repository-banner.gif,docs,Animated visual cover generated from SVG master

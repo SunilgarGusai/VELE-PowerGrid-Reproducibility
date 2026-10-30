@@ -54,3 +54,9 @@ certified_cut_v2/PHASE18_EXPLICIT_13_CONNECTED_AC_CUT_CERTIFICATES.csv,results,I
 docs/RELEASE_NOTES_v2.0.0.md,release,Version 2 scientific limitations and public release notes
 scripts/build_v2_public_release.py,verification,Build and verify the manuscript-free public Version 2 archive
 .github/workflows/publish-certified-v2-release.yml,ci,Guarded one-time Version 2 release after source-certified replay
+docs/assets/v2-figures/fig1-validation-design.svg,visual,Two independently documented source/endpoint cohorts; no pooled results
+docs/assets/v2-figures/fig2-certificates-by-source-condition.svg,visual,Positive cut certificates separated by residual connectivity and condition
+docs/assets/v2-figures/fig3-branch52-physical-cut.svg,visual,Rated physical cut boundary including two surviving parallel circuits
+docs/assets/v2-figures/fig4-thirteen-certified-cases.svg,visual,All 13 connected source-rated witnesses highlighting four unchanged-VELE cases
+docs/V2_VISUAL_EVIDENCE.md,documentation,Source-linked Version 2 journal figure atlas
+scripts/generate_v2_scientific_figures.py,code,Reproducible source-asserting vector and high-resolution raster figure generator

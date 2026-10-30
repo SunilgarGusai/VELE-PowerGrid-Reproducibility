@@ -31,3 +31,5 @@ jobs:
       - name: Verify 13 source-identified electrical cut witnesses
         working-directory: certified_cut_v2
         run: python independent_explicit_cut_witnesses.py
+      - name: Dry-run public-only release packaging and SHA-256 verification
+        run: python scripts/build_v2_public_release.py

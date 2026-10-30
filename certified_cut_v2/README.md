@@ -1,4 +1,4 @@
-# Certified physical-circuit cut validation — Version 2 candidate
+# Certified physical-circuit cut validation — Version 2.0.0
 
 This directory supports an IEEE/MATPOWER-based observability-limit study, not a claim that VELE optimizes power-system security.
 
@@ -38,4 +38,4 @@ This repository preserves earlier results but does not claim superiority of VELE
 
 ## Double-blind publication
 
-The repository is author-identifying. Until journal instructions authorize public identity disclosure, upload an anonymized reproduction package alongside the double-blind manuscript. The identified final version can include a tagged Version 2 GitHub release URL once frozen and published; this working branch is not yet such a release.
+The repository is author-identifying. Until journal instructions authorize public identity disclosure, upload an anonymized reproduction package alongside the double-blind manuscript. The identified manuscript can cite the tagged v2.0.0 public reproducibility release once confirmed; the anonymous manuscript must not reveal the author-identifying URL without editorial authorization.

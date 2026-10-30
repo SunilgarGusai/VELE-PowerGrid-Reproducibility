@@ -1,0 +1,35 @@
+name: Version 2 certified physical-circuit cut replay
+on:
+  push:
+    paths:
+      - 'certified_cut_v2/**'
+      - '.github/workflows/certified-cut-v2.yml'
+  pull_request:
+    paths:
+      - 'certified_cut_v2/**'
+      - '.github/workflows/certified-cut-v2.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install bounded dependency set
+        run: python -m pip install -r certified_cut_v2/requirements.txt
+      - name: Fetch exactly versioned upstream PGLib-OPF cases and verify SHA-256
+        working-directory: certified_cut_v2
+        run: python fetch_pglib_v23_07_sources.py
+      - name: Reconstruct all 536 source case bounds
+        working-directory: certified_cut_v2
+        run: python build_source_cut_bounds.py
+      - name: Independently replay all archived cut bounds
+        working-directory: certified_cut_v2
+        run: python replay_cut_certificates_offline.py
+      - name: Verify 13 source-identified electrical cut witnesses
+        working-directory: certified_cut_v2
+        run: python independent_explicit_cut_witnesses.py
+      - name: Dry-run public-only release packaging and SHA-256 verification
+        run: python scripts/build_v2_public_release.py

@@ -39,3 +39,18 @@ stages/07_branch_outage_validation/outputs/branch_n1_redispatch_sensitivity_summ
 .github/workflows/matpower-octave-validation.yml,ci,Executable MATPOWER 8.1 / GNU Octave validation
 .github/workflows/render-repository-banner.yml,ci,Reproducible export of animated repository artwork
 docs/assets/repository-banner.gif,docs,Animated visual cover generated from SVG master
+.github/workflows/certified-cut-v2.yml,ci,Source-rated 536-state cut replay in isolated CI
+certified_cut_v2/README.md,method,Physical-circuit capacity-cut protocol and scientific limits
+certified_cut_v2/requirements.txt,environment,Bounded Python dependencies for certified-cut replay
+certified_cut_v2/SOURCE_CASE_SHA256.json,provenance,Pinned four-case PGLib-OPF v23.07 byte-level source hashes
+certified_cut_v2/fetch_pglib_v23_07_sources.py,code,Official version-pinned input downloader and SHA-256 validator
+certified_cut_v2/build_source_cut_bounds.py,code,Regeneration of 536 source-rated cut lower bounds
+certified_cut_v2/replay_cut_certificates_offline.py,verification,Independent source replay of 536 archived cut bounds
+certified_cut_v2/independent_explicit_cut_witnesses.py,verification,Second maximum-flow algorithm for 13 connected cut witnesses
+certified_cut_v2/PHASE18_ALL_PHYSICAL_OUTAGES_RIGOROUS_CUT_BOUNDS.csv,results,536 source-rated circuit and intact-state necessary-curtailment lower bounds
+certified_cut_v2/PHASE18_CUT_BOUND_CASE_SUMMARY.csv,results,Four operating-case aggregate source-rated cut summaries
+certified_cut_v2/PHASE18_IEEE118_API_CONNECTED_PROVABLE_SHEDDING.csv,results,Thirteen certified connected stressed IEEE118 physical outages
+certified_cut_v2/PHASE18_EXPLICIT_13_CONNECTED_AC_CUT_CERTIFICATES.csv,results,Independent identified bus-partition witnesses for all thirteen certificates
+docs/RELEASE_NOTES_v2.0.0.md,release,Version 2 scientific limitations and public release notes
+scripts/build_v2_public_release.py,verification,Build and verify the manuscript-free public Version 2 archive
+.github/workflows/publish-certified-v2-release.yml,ci,Guarded one-time Version 2 release after source-certified replay

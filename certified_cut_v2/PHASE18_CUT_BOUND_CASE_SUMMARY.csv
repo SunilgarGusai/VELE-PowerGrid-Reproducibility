@@ -1,0 +1,5 @@
+condition,all_branch_outages,connected_branch_outages,cut_certified_positive_all,cut_certified_positive_connected,cut_lower_bound_max_MW,cut_certificates_conflicting_with_AC_primal
+ieee118_api,186,177,17,13,184.0000000000009,0
+ieee118_typ,186,177,5,0,184.0,0
+ieee57_api,80,79,1,0,4.379999999999882,0
+ieee57_typ,80,79,1,0,3.8000000000006366,0

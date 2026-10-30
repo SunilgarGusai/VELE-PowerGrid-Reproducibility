@@ -6,13 +6,13 @@
 
 <p align="center">
   <strong>Reproducibility repository for</strong><br/>
-  <strong>Computational Graph Screening of Power-Grid Vulnerability with Vertex Eccentricity Labeled Energy and DC-Flow Validation</strong>
+  <strong>Electrical Consequences Invisible to Eccentricity-Based Spectral Screening in Power-Grid Contingencies</strong>
 </p>
 
 <p align="center">
   <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml"><img src="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml/badge.svg" alt="Repository verification"/></a>
   <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml"><img src="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml/badge.svg" alt="MATPOWER Octave validation"/></a>
-  <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission"><img src="https://img.shields.io/badge/release-v1.0.0--submission-blue.svg" alt="Frozen release"/></a>
+  <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission"><img src="https://img.shields.io/badge/release-v1.0.0--submission-blue.svg" alt="Historical Version 1 release"/></a>
   <a href="environment.yml"><img src="https://img.shields.io/badge/Python-3.13-3776AB.svg?logo=python&logoColor=white" alt="Python 3.13"/></a>
   <a href="https://matpower.org/"><img src="https://img.shields.io/badge/MATPOWER-8.1-2f6f9f.svg" alt="MATPOWER 8.1"/></a>
   <a href="docs/FROZEN_RESULTS.md"><img src="https://img.shields.io/badge/benchmarks-6%20IEEE%2FMATPOWER-success.svg" alt="Six benchmarks"/></a>
@@ -22,7 +22,8 @@
 <p align="center">
   <a href="#why-this-study">Why this study?</a> •
   <a href="#method-at-a-glance">Method</a> •
-  <a href="#key-evidence">Key evidence</a> •
+  <a href="#version-2-source-rated-cut-certification">Certified cuts</a> •
+  <a href="#key-evidence">Historical DC evidence</a> •
   <a href="#reproducibility">Reproducibility</a> •
   <a href="#result-to-source-map">Result map</a> •
   <a href="#citation">Citation</a>
@@ -34,7 +35,7 @@
 
 Power-grid topology is informative, but topology alone does not determine electrical severity. A structurally important outage may produce modest active-power consequences, while an electrically severe event may be nearly invisible to a topology-only descriptor.
 
-This repository accompanies a study of **Vertex Eccentricity Labeled Energy (VELE)** as an eccentricity-sensitive spectral screening diagnostic evaluated against electrical consequences rather than treated as a stand-alone resilience score.
+This repository accompanies an observability and electrical-consequence study of the **previously published** Vertex Eccentricity Labeled Energy (VELE). VELE is not a substitute for power flow, OPF, security assessment, or a grid-protection algorithm. The original exploratory MATPOWER/DC work is preserved as Version 1; the separately reproducible PGLib source-rated cut certification is added in Version 2.
 
 > **Central question:** What vulnerability signal is contributed by an eccentricity-sensitive spectral descriptor, and when does that signal agree—or fail to agree—with DC-flow redistribution and service consequences?
 
@@ -64,7 +65,47 @@ Candidate-line heuristics are evaluated separately from downstream electrical fe
 
 See [`docs/METHOD_PROTOCOL.md`](docs/METHOD_PROTOCOL.md) for the frozen computational protocol.
 
-## Study design
+
+## Version 2 source-rated cut certification
+
+**Status:** Frozen public [Version 2.0.0 release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0) supporting an AUT journal manuscript in preparation. The historical [Version 1 frozen release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) remains intact.
+
+The [certified-cut reproducibility module](certified_cut_v2/README.md) uses **PGLib-OPF v23.07** source cases for IEEE57 and IEEE118 under typical and API-stressed conditions. Four source operating cases represent **two distinct topologies**, not four statistically independent networks. The source files are obtained from upstream with byte-level SHA-256 verification; physical parallel circuits and original source ratings are treated separately.
+
+| Version 2 evidence | Verified value | Interpretation |
+|---|---:|---|
+| Single physical-circuit outages | **532** | Exhaustive in the four selected source cases |
+| Intact states | **4** | Included in the **536** cut-bound replay records |
+| Connected stressed IEEE118 outages with positive cut lower bounds | **13** | Necessary curtailment under stated source-rated, passive-network assumptions |
+| Circuit 52, unchanged VELE | **at least 60.29 MW** | Certified necessary-curtailment lower bound |
+| Circuit 53, unchanged VELE | **at least 49.29 MW** | Same |
+| Circuit 55, unchanged VELE | **at least 15.10 MW** | Same |
+| Circuit 173, unchanged VELE | **at least 13.49 MW** | Same |
+
+The lower bound is derived from a standard cut inequality using local positive demand, available online generation capacity and surviving physical-circuit interface ratings. It is **not** a new optimization algorithm or a globally optimal AC-OPF solution. A **zero** cut bound is **inconclusive**, not evidence of security. All 13 positive cut certificates are independently checked using two different maximum-flow algorithms.
+
+### Reproduce the new evidence
+
+Use Python 3.11 and install [the Version 2 requirements](certified_cut_v2/requirements.txt), then execute from `certified_cut_v2/`:
+
+```bash
+python fetch_pglib_v23_07_sources.py
+python build_source_cut_bounds.py
+python replay_cut_certificates_offline.py
+python independent_explicit_cut_witnesses.py
+```
+
+The dedicated [GitHub Actions replay](.github/workflows/certified-cut-v2.yml) independently downloads the exact source cases and regenerates the evidence. Upstream **PGLib benchmark data use CC BY 4.0**; original analysis scripts in this repository use MIT. Upstream terms and per-file attribution are not overridden by the repository license. See the [upstream PGLib v23.07 license](https://github.com/power-grid-lib/pglib-opf/blob/v23.07/LICENSE).
+
+### Historical AC experiment — explicit validity boundary
+
+In the older AC candidate study, **91 of 157** positive candidate-curtailment labels came from nonconverged or time-limited IPOPT runs. Even a numerically feasible positive-curtailment solution is **an upper bound**, not proof of globally necessary curtailment. **Do not interpret historical candidate-defined AC AUROCs as validated electrical-security performance.** The Version 2 cut certification is separate and does not retroactively validate those labels.
+
+### Reviewer anonymity and public-release boundary
+
+The repository and its release are **author-identifying**. The anonymous journal manuscript and supplementary review copy must not disclose the repository URL unless AUT explicitly permits it. The unpublished manuscript, manuscript source, cover letter, author declarations, and private numerical audit snapshots are **not** public release assets. An independently packaged anonymous reproducibility archive is intended for reviewer access. No publication or acceptance is claimed.
+
+## Study design — historical MATPOWER/DC cohort
 
 | Evidence block | Frozen scope |
 |---|---:|
@@ -77,7 +118,7 @@ See [`docs/METHOD_PROTOCOL.md`](docs/METHOD_PROTOCOL.md) for the frozen computat
 
 Single-bus removals are stylized bus/substation-loss screening cases, not conventional line/generator N-1 compliance. Physical branch outages are evaluated one row at a time and explicitly retain the distinction between electrical branch rows and simple structural edges.
 
-## Key evidence
+## Key evidence — historical MATPOWER/DC cohort
 
 The repository exposes manuscript-supporting results directly through machine-readable CSV files and validation reports. A complete reviewer-facing summary is available in [`docs/FROZEN_RESULTS.md`](docs/FROZEN_RESULTS.md).
 
@@ -131,7 +172,7 @@ Two complete clean-run summaries are committed. Their final floating-point digit
 
 This validates the **intact benchmark DC equations and branch-flow implementation**. The custom island handling, generator redispatch and load-curtailment proxies remain separate study methodology and are not represented as native MATPOWER security-analysis functionality.
 
-## Reproducibility
+## Reproducibility — historical pipeline and Version 2 extension
 
 The public repository is designed as an **auditable scientific artifact**, not as an unexplained code dump.
 
@@ -149,7 +190,7 @@ The current `main` branch contains:
 
 ### Frozen public release
 
-The [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) release preserves the **complete public computational submission snapshot**, including staged inputs/outputs, portable reproduction entry points, validation evidence, technical documentation and integrity checks.
+The historical [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) release preserves the **earlier public computational submission snapshot**, including staged inputs/outputs, portable reproduction entry points, validation evidence, technical documentation and integrity checks.
 
 The manuscript PDF/source, cover letter and journal-submission files are intentionally excluded from the public release. This repository is a scientific reproducibility artifact, not a mirror of the manuscript package.
 
@@ -203,7 +244,8 @@ See [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) for the exact boundary 
 
 ```text
 .
-├── .github/workflows/            # repository and MATPOWER/Octave CI
+├── .github/workflows/            # repository, MATPOWER/Octave and certified-cut CI
+├── certified_cut_v2/            # source-rated cut certification and source SHA-256
 ├── config/                       # frozen high-level study configuration
 ├── docs/
 │   ├── assets/                   # banner and scientific workflow visuals
@@ -227,7 +269,7 @@ The curated [`REPOSITORY_MANIFEST.csv`](REPOSITORY_MANIFEST.csv) explains the ro
 
 ## Scientific scope and limitations
 
-This repository supports a **computational graph-based vulnerability-screening study for power grids**. It does not establish that VELE is universally superior to conventional structural centralities or electrical indicators.
+This repository supports an **observability-limit study of a previously published graph descriptor**, together with historical MATPOWER/DC proxy analyses and a separate PGLib source-rated necessary-curtailment certification. It does not establish that VELE is universally superior to conventional structural centralities or electrical indicators.
 
 Important boundaries include:
 
@@ -241,9 +283,9 @@ Important boundaries include:
 
 ## Release status
 
-**Current status: frozen reproducibility repository supporting ongoing manuscript preparation.**
+**Current status: Version 2 source-rated reproducibility release; the Version 1 historical release remains public and unchanged.**
 
-The public computational state is frozen in release [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission). Publication metadata and a DOI can be added to `CITATION.cff` after publication without changing the frozen numerical evidence.
+The current source-rated evidence is frozen in release [`v2.0.0`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0), with the independent historical [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) preserved. Publication metadata and a DOI can be added to `CITATION.cff` after publication without changing the frozen numerical evidence.
 
 ## Authors
 
@@ -254,7 +296,7 @@ The public computational state is frozen in release [`v1.0.0-submission`](https:
 
 ## Citation
 
-Citation metadata are provided in [`CITATION.cff`](CITATION.cff). Cite the associated article when publication metadata become available and use the frozen `v1.0.0-submission` release when referring to the computational submission state.
+Version 2 article details are provisional until acceptance; do not cite an unpublished article as if published. Citation metadata are provided in [`CITATION.cff`](CITATION.cff). Do not cite the prospective AUT paper as published. Use the frozen `v2.0.0` reproducibility release for the certified-cut evidence, and `v1.0.0-submission` for the historical MATPOWER/DC material.
 
 ## License and third-party materials
 

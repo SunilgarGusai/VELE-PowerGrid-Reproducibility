@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this software or frozen research outputs, please cite the associated manuscript and the frozen v1.0.0-submission reproducibility release."
+message: "Cite the specific frozen software release you used and the original published VELE method where applicable. The forthcoming manuscript is not yet a published reference."
 title: "VELE Grid Observability and Certified Electrical Cut Evidence"
 type: software
 authors:
@@ -31,4 +31,4 @@ preferred-citation:
     - family-names: Jadeja
       given-names: Manoharsinh R.
       orcid: "https://orcid.org/0000-0003-1833-4730"
-  notes: "Prospective unsubmitted AUT journal manuscript. Article DOI and publication metadata are intentionally not yet assigned. The v1.0.0-submission software release remains independently citable as the historical artifact."
+  notes: "Manuscript in preparation for AUT Journal of Electrical Engineering; not published or accepted. Do not treat this preferred-citation entry as a published article. For now cite the frozen v1.0.0-submission software release and the original 2025 VELE article as appropriate."

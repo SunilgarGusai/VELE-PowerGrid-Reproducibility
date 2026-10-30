@@ -10,8 +10,9 @@ authors:
     given-names: Manoharsinh R.
     orcid: "https://orcid.org/0000-0003-1833-4730"
 repository-code: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility"
-url: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/tree/aut-vele03-certified-cut-v2"
-version: "2.0.0-candidate"
+url: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0"
+version: "2.0.0"
+date-released: 2026-10-30
 
 abstract: "Reproducible physical power-grid contingency checks for the observability limits of the previously published vertex eccentricity labeled energy invariant. Includes six-system MATPOWER DC proxy evidence and source-rated PGLib-OPF v23.07 capacity-cut lower bounds for thirteen consequential IEEE118 connected outages; four have unchanged VELE. Historical candidate AC optimality is not claimed."
 keywords:

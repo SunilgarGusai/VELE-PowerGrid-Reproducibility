@@ -51,3 +51,6 @@ certified_cut_v2/PHASE18_ALL_PHYSICAL_OUTAGES_RIGOROUS_CUT_BOUNDS.csv,results,53
 certified_cut_v2/PHASE18_CUT_BOUND_CASE_SUMMARY.csv,results,Four operating-case aggregate source-rated cut summaries
 certified_cut_v2/PHASE18_IEEE118_API_CONNECTED_PROVABLE_SHEDDING.csv,results,Thirteen certified connected stressed IEEE118 physical outages
 certified_cut_v2/PHASE18_EXPLICIT_13_CONNECTED_AC_CUT_CERTIFICATES.csv,results,Independent identified bus-partition witnesses for all thirteen certificates
+docs/RELEASE_NOTES_v2.0.0.md,release,Version 2 scientific limitations and public release notes
+scripts/build_v2_public_release.py,verification,Build and verify the manuscript-free public Version 2 archive
+.github/workflows/publish-certified-v2-release.yml,ci,Guarded one-time Version 2 release after source-certified replay

@@ -1,9 +1,9 @@
 from pathlib import Path
 import re,hashlib,json,numpy as np,pandas as pd,networkx as nx
 R=Path(__file__).resolve().parent
-lock=json.loads((R/'PHASE18_SELECTION_LOCK_AND_HASHES.json').read_text())
+lock=json.loads((R/'SOURCE_CASE_SHA256.json').read_text())
 src=R/'inputs'/'api_pglib_opf_case118_ieee__api.m'
-assert hashlib.sha256(src.read_bytes()).hexdigest()==lock['source_case_sha256'][src.name]
+assert hashlib.sha256(src.read_bytes()).hexdigest()==lock[src.name]
 t=src.read_text()
 def mat(key):
  m=re.search(r'mpc\.'+key+r'\s*=\s*\[([\s\S]*?)\];',t)
@@ -38,7 +38,7 @@ for p in prior.itertuples():
  assert abs(deficit-p.mandatory_shed_lower_bound_MW)<1e-5,(k,deficit,p.mandatory_shed_lower_bound_MW)
  assert deficit>0 and abs(val-(np.maximum(bus[:,2],0).sum()-deficit))<1e-5
  rows.append({'branch_id':k,'source_version':'pglib-opf-v23.07-ieee118-api',
- 'source_sha256':lock['source_case_sha256'][src.name],
+ 'source_sha256':lock[src.name],
  'sink_cut_buses':','.join(map(str,sinknodes)),
  'sink_cut_bus_count':len(sinknodes),'cut_positive_demand_MW':demand,
  'cut_generator_total_Pmax_MW':power,'cut_remaining_branch_RATEA_sum_MVA':limit,

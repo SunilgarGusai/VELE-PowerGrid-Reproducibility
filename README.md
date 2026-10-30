@@ -68,7 +68,7 @@ See [`docs/METHOD_PROTOCOL.md`](docs/METHOD_PROTOCOL.md) for the frozen computat
 
 ## Version 2 source-rated cut certification
 
-**Status:** Version 2 candidate on PR #6; not yet merged or released. The historical [Version 1 frozen release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) remains intact.
+**Status:** Frozen public [Version 2.0.0 release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0) supporting an AUT journal manuscript in preparation. The historical [Version 1 frozen release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) remains intact.
 
 The [certified-cut reproducibility module](certified_cut_v2/README.md) uses **PGLib-OPF v23.07** source cases for IEEE57 and IEEE118 under typical and API-stressed conditions. Four source operating cases represent **two distinct topologies**, not four statistically independent networks. The source files are obtained from upstream with byte-level SHA-256 verification; physical parallel circuits and original source ratings are treated separately.
 
@@ -190,7 +190,7 @@ The current `main` branch contains:
 
 ### Frozen public release
 
-The [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) release preserves the **complete public computational submission snapshot**, including staged inputs/outputs, portable reproduction entry points, validation evidence, technical documentation and integrity checks.
+The historical [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) release preserves the **earlier public computational submission snapshot**, including staged inputs/outputs, portable reproduction entry points, validation evidence, technical documentation and integrity checks.
 
 The manuscript PDF/source, cover letter and journal-submission files are intentionally excluded from the public release. This repository is a scientific reproducibility artifact, not a mirror of the manuscript package.
 
@@ -283,9 +283,9 @@ Important boundaries include:
 
 ## Release status
 
-**Current status: Version 2 candidate under review; Version 1 frozen release remains public and unchanged.**
+**Current status: Version 2 source-rated reproducibility release; the Version 1 historical release remains public and unchanged.**
 
-The public computational state is frozen in release [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission). Publication metadata and a DOI can be added to `CITATION.cff` after publication without changing the frozen numerical evidence.
+The current source-rated evidence is frozen in release [`v2.0.0`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0), with the independent historical [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) preserved. Publication metadata and a DOI can be added to `CITATION.cff` after publication without changing the frozen numerical evidence.
 
 ## Authors
 
@@ -296,7 +296,7 @@ The public computational state is frozen in release [`v1.0.0-submission`](https:
 
 ## Citation
 
-Version 2 article details are provisional until acceptance; do not cite an unpublished article as if published. Citation metadata are provided in [`CITATION.cff`](CITATION.cff). Cite the associated article when publication metadata become available and use the frozen `v1.0.0-submission` release when referring to the computational submission state.
+Version 2 article details are provisional until acceptance; do not cite an unpublished article as if published. Citation metadata are provided in [`CITATION.cff`](CITATION.cff). Do not cite the prospective AUT paper as published. Use the frozen `v2.0.0` reproducibility release for the certified-cut evidence, and `v1.0.0-submission` for the historical MATPOWER/DC material.
 
 ## License and third-party materials
 

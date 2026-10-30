@@ -2,7 +2,7 @@ from pathlib import Path
 import re,json,hashlib
 import numpy as np,pandas as pd,networkx as nx
 R=Path(__file__).resolve().parent
-lock=json.loads((R/'PHASE18_SELECTION_LOCK_AND_HASHES.json').read_text())
+lock=json.loads((R/'SOURCE_CASE_SHA256.json').read_text())
 expected=pd.read_csv(R/'PHASE18_ALL_PHYSICAL_OUTAGES_RIGOROUS_CUT_BOUNDS.csv')
 names={'ieee57_typ':'pglib_opf_case57_ieee.m','ieee57_api':'api_pglib_opf_case57_ieee__api.m',
        'ieee118_typ':'pglib_opf_case118_ieee.m','ieee118_api':'api_pglib_opf_case118_ieee__api.m'}
@@ -14,7 +14,7 @@ def mat(t,key):
 checks=[]
 for name,fn in names.items():
  p=R/'inputs'/fn
- assert hashlib.sha256(p.read_bytes()).hexdigest()==lock['source_case_sha256'][fn]
+ assert hashlib.sha256(p.read_bytes()).hexdigest()==lock[fn]
  t=p.read_text();bus=mat(t,'bus');gen=mat(t,'gen');br=mat(t,'branch')
  gen=gen[gen[:,7]>0];br=br[br[:,10]>0]
  assert np.all(bus[:,2]>=0) and np.all(bus[:,4]==0) and np.all(br[:,2]>=0) and np.all(br[:,5]>0)

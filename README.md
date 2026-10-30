@@ -12,6 +12,7 @@
 <p align="center">
   <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml"><img src="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml/badge.svg" alt="Repository verification"/></a>
   <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml"><img src="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml/badge.svg" alt="MATPOWER Octave validation"/></a>
+  <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0"><img src="https://img.shields.io/badge/release-v2.0.0-0e7490.svg" alt="Verified Version 2 source-rated release"/></a>
   <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission"><img src="https://img.shields.io/badge/release-v1.0.0--submission-blue.svg" alt="Historical Version 1 release"/></a>
   <a href="environment.yml"><img src="https://img.shields.io/badge/Python-3.13-3776AB.svg?logo=python&logoColor=white" alt="Python 3.13"/></a>
   <a href="https://matpower.org/"><img src="https://img.shields.io/badge/MATPOWER-8.1-2f6f9f.svg" alt="MATPOWER 8.1"/></a>
@@ -23,6 +24,7 @@
   <a href="#why-this-study">Why this study?</a> •
   <a href="#method-at-a-glance">Method</a> •
   <a href="#version-2-source-rated-cut-certification">Certified cuts</a> •
+  <a href="#version-2-visual-evidence">Visual evidence</a> •
   <a href="#key-evidence">Historical DC evidence</a> •
   <a href="#reproducibility">Reproducibility</a> •
   <a href="#result-to-source-map">Result map</a> •
@@ -81,6 +83,16 @@ The [certified-cut reproducibility module](certified_cut_v2/README.md) uses **PG
 | Circuit 53, unchanged VELE | **at least 49.29 MW** | Same |
 | Circuit 55, unchanged VELE | **at least 15.10 MW** | Same |
 | Circuit 173, unchanged VELE | **at least 13.49 MW** | Same |
+
+### Version 2 visual evidence
+
+The four diagrams and charts are rebuilt from the frozen electrical cases and certified-cut tables, not inferred from schematic drawings. They use the same physical-circuit IDs and units as the public source files.
+
+<p align="center">
+  <img src="docs/assets/v2-figures/fig1-validation-design.svg" alt="Two independent, not-pooled MATPOWER structural DC and PGLib source-rated validation streams" width="96%" />
+</p>
+
+The separate [Version 2 visual evidence atlas](docs/V2_VISUAL_EVIDENCE.md) contains all four editable SVG graphics, including the branch-52 physical cut and the complete 13-certificate chart. The corresponding reproducible source is [`scripts/generate_v2_scientific_figures.py`](scripts/generate_v2_scientific_figures.py). These **presentation assets were added to the live main branch after the immutable `v2.0.0` tag**; the verified release data and code archive remain unchanged.
 
 The lower bound is derived from a standard cut inequality using local positive demand, available online generation capacity and surviving physical-circuit interface ratings. It is **not** a new optimization algorithm or a globally optimal AC-OPF solution. A **zero** cut bound is **inconclusive**, not evidence of security. All 13 positive cut certificates are independently checked using two different maximum-flow algorithms.
 

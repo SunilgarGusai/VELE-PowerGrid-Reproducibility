@@ -1,0 +1,38 @@
+name: Publish frozen Version 2 source-rated reproducibility release
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  certify-and-release:
+    if: contains(github.event.head_commit.message, '[publish-v2]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact merge commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source-certified dependencies
+        run: python -m pip install -r certified_cut_v2/requirements.txt
+      - name: Regenerate original source-rated evidence from PGLib upstream
+        working-directory: certified_cut_v2
+        run: |
+          python fetch_pglib_v23_07_sources.py
+          python build_source_cut_bounds.py
+          python replay_cut_certificates_offline.py
+          python independent_explicit_cut_witnesses.py
+      - name: Validate public repository manifest and original DC summaries
+        run: python scripts/validate_public_artifact.py
+      - name: Produce checksum-verified, manuscript-free public ZIP
+        run: python scripts/build_v2_public_release.py
+      - name: Create immutable GitHub Version 2 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v2.0.0 --target "$GITHUB_SHA" --title "v2.0.0 — Certified structural-observability and source-rated cut evidence" --notes-file docs/RELEASE_NOTES_v2.0.0.md dist/VELE_REPRODUCIBILITY_PUBLIC_v2.0.0.zip dist/SHA256SUMS_PUBLIC_V2.txt dist/PUBLIC_V2_FILE_HASHES.json

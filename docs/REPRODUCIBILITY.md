@@ -1,104 +1,55 @@
-# Reproducibility guide
+# Versioned scientific reproducibility and review-freeze guide
 
-The VELE repository is organized around two complementary public layers:
+## Exact releases and what they establish
 
-1. the live `main` branch, which is a compact reviewer-facing validation and provenance layer; and
-2. the frozen GitHub release `v1.0.0-submission`, which contains the complete public computational snapshot prepared for manuscript submission.
+- **Final review snapshot:** [`v2.1.0-review-freeze`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.1.0-review-freeze). This is the reviewer-facing **code/data/visuals documentation** freeze. It contains no unpublished manuscript, coauthor forms or private reviewer package. After its verification, changes will be deferred until review unless a material integrity/security defect is discovered; any correction would be transparently versioned, never a silent replacement of the tag or assets.
+- **Certified numerical source snapshot:** [`v2.0.0`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0). A separate immutable package with pinned PGLib-OPF v23.07 source hashes, 532 physical outages, four intact conditions, 536 verified necessary-capacity-cut records and 13 connected positively certified IEEE118 stressed events.
+- **Historical MATPOWER/DC snapshot:** [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission). Original staged six-benchmark MATPOWER/DC electrical-proxy results and source verification.
 
-This distinction is intentional. It keeps the repository homepage navigable while preserving the fuller staged archive needed for traceability.
+## Source-rated necessary-curtailment replication
 
-## What the live branch can verify directly
-
-After cloning the repository, install the pinned Python dependencies:
+From the repository root, with Python 3.11 and the `certified_cut_v2/requirements.txt` environment:
 
 ```bash
-python -m venv .venv
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+python certified_cut_v2/fetch_pglib_v23_07_sources.py
+python certified_cut_v2/build_source_cut_bounds.py
+python certified_cut_v2/replay_cut_certificates_offline.py
+python certified_cut_v2/independent_explicit_cut_witnesses.py
 ```
 
-The same dependency set is also represented in `environment.yml`.
+Do not pool the PGLib IEEE57/118 typical/API source cases with historic MATPOWER 8.1 electrical outputs: the case conditions and measured endpoints differ. The measured positive capacity-cut quantity is a **necessary lower bound**, not an AC-OPF optimum. Its zero value gives **no security assurance**. All thirteen connected positive certificates are independently checked with two network-flow algorithms.
 
-### Smoke-check the public DC utilities
+## Final scientific figures
+
+The [visual evidence atlas](V2_VISUAL_EVIDENCE.md) includes four SVG figures with equivalent vector PDF and 340-DPI PNG generation:
 
 ```bash
+python -m pip install -r certified_cut_v2/requirements.txt
+python -m pip install "matplotlib>=3.9,<4"
+python certified_cut_v2/fetch_pglib_v23_07_sources.py
+python scripts/generate_v2_scientific_figures.py
+```
+
+The generator validates case IDs, physical branch-52 cut boundary and parallel circuit ratings, and the archived 13-positive and four-condition outputs before writing graphics. Generated graphics are not a new scientific experiment.
+
+## MATPOWER 8.1/DC reproducibility
+
+The `main` and final review snapshot retain the historical validation utilities and selected outputs. With the pinned root `requirements.txt` environment:
+
+```bash
+python scripts/validate_public_artifact.py
 python validation/python_dcpf_reference.py --help
 python validation/compare_matpower_python.py --help
 ```
 
-### Inspect the frozen numerical evidence
+The full public staged workflow is separately preserved in the historical v1 release. The dedicated [MATPOWER validation workflow](../.github/workflows/matpower-octave-validation.yml) fetches checksum-pinned MATPOWER 8.1 and independently compares the intact DC equations against NumPy for IEEE14/30/39/57/118/300. **Historical DC redistribution and island-adequacy proxies do not establish global optimality or unavoidable AC load shedding.**
 
-The live branch exposes machine-readable reviewer-facing outputs for:
+## CI and release-asset integrity
 
-- executable MATPOWER 8.1 / GNU Octave validation;
-- the 784-case physical-branch outage extension;
-- branch-outage redispatch sensitivity;
-- VELE/electrical rank correlations;
-- event-discrimination summaries;
-- benchmark provenance and release hashes.
+Repository verification checks the curator manifest, critical paths, Python syntax and MATPOWER/DC numerical invariants. The source-rated and final review workflows separately regenerate or replay original source-rated PGLib cases. GitHub release assets include a public-only ZIP, a checksum file and per-file hash inventory. The final archive is created from tracked files and refuses DOCX, PDF, LaTeX and other manuscript-format files.
 
-See `docs/FROZEN_RESULTS.md` for the result-to-source map.
+Benchmark licensing remains source-specific: original repository software MIT; PGLib source case data CC BY 4.0; original MATPOWER case provenance and upstream license boundaries apply. See [third-party terms](../THIRD_PARTY_LICENSES.md).
 
-## GitHub Actions verification
+## Publication and blind-review boundaries
 
-Two workflows provide independent checks.
-
-### Repository verification
-
-`.github/workflows/repository-validation.yml`
-
-This workflow:
-
-- installs the pinned Python environment;
-- checks required reviewer-facing files;
-- compiles the public Python utilities;
-- performs CLI smoke tests;
-- verifies the committed MATPOWER cross-check evidence;
-- checks aggregate physical-branch invariants.
-
-### MATPOWER 8.1 / Octave validation
-
-`.github/workflows/matpower-octave-validation.yml`
-
-This workflow starts from a clean Ubuntu runner, installs GNU Octave, downloads the official MATPOWER 8.1 release, verifies its checksum, executes `rundcpf` on all six intact cases, independently computes the same solutions in NumPy, and compares bus angles and branch active-power flows.
-
-The workflow fails if the declared numerical tolerances are exceeded.
-
-## Frozen release
-
-The public release
-
-`v1.0.0-submission`
-
-contains the complete public reproducibility archive supporting the manuscript-ready study, including staged computational inputs/outputs, portable reproduction entry points, validation evidence, documentation and integrity checks.
-
-The manuscript PDF/source, cover letter and journal-portal files are intentionally excluded from the public reproducibility release.
-
-## What is not claimed
-
-The repository does not claim that:
-
-- VELE replaces AC/DC contingency analysis;
-- the structural candidate heuristics are electrically feasible transmission plans;
-- the executable MATPOWER intact-case check validates the custom island/redispatch/load-curtailment methodology as native MATPOWER security analysis;
-- every historical development artifact is required to understand the frozen study.
-
-The public package is designed for transparent verification of the frozen computational evidence, not for presenting development clutter as scientific output.
-
-## Data and third-party materials
-
-MATPOWER benchmark data and software retain their upstream terms. The repository's original analysis code is released under the repository licence, while third-party materials are documented separately in:
-
-- `THIRD_PARTY_LICENSES.md`
-- `docs/DATA_SOURCE_MANIFEST.md`
-
-No missing electrical ratings are fabricated.
-
-## Recommended reviewer path
-
-1. Read `README.md` for the scientific question and headline evidence.
-2. Read `docs/METHOD_PROTOCOL.md` for the frozen methodology.
-3. Read `docs/FROZEN_RESULTS.md` for the numerical result map.
-4. Inspect `validation/results/` and `stages/07_branch_outage_validation/outputs/` for machine-readable evidence.
-5. Use the Actions tab for executable MATPOWER validation.
-6. Use the `v1.0.0-submission` release for the complete public computational archive.
+This repository **does not** claim that the current journal article is published or accepted. It is author-identifying. The journal's anonymous manuscript and private reviewer supplement must be supplied through its authorized editorial workflow, not published in GitHub. Cite an exact release, tag and/or SHA instead of the moving `main` branch. No silent amendments to the review-frozen release are permitted.

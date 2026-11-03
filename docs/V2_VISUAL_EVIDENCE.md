@@ -1,6 +1,6 @@
 # Version 2 — Visual evidence atlas
 
-The following four figures are **source-traceable visual explanations**, not additional experiments or new estimates. They accompany the narrower electrical-observability paper in preparation. This atlas is a **post-v2.0.0 presentation update on `main`**; it does not modify the immutable [v2.0.0 source/data release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0).
+The following four figures are **source-traceable visual explanations**, not additional experiments or new estimates. They accompany the narrower electrical-observability paper in preparation. This atlas is included in the final [v2.1.0-review-freeze public code/data/figure snapshot](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.1.0-review-freeze). It was first prepared after, and does not modify, the immutable [v2.0.0 numerical source/data release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0).
 
 All images are vector SVG with readable labels. Use the linked standalone graphic for full-size inspection and accessible text, rather than relying on a compressed screenshot.
 
@@ -30,9 +30,11 @@ The orange bars indicate the **four VELE-invisible** but positively certified ou
 
 ## Regeneration
 
-After installing the [certified-cut dependencies](../certified_cut_v2/requirements.txt) and Matplotlib, run from the repository root:
+After installing the [certified-cut dependencies](../certified_cut_v2/requirements.txt) and **Matplotlib 3.9 or newer (below 4)**, run from the repository root:
 
 ```bash
+python -m pip install -r certified_cut_v2/requirements.txt
+python -m pip install "matplotlib>=3.9,<4"
 python certified_cut_v2/fetch_pglib_v23_07_sources.py
 python scripts/generate_v2_scientific_figures.py
 ```

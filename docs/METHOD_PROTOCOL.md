@@ -89,3 +89,9 @@ For exact navigation, see:
 - `docs/REPRODUCIBILITY.md`
 - `docs/FROZEN_RESULTS.md`
 - `docs/DATA_SOURCE_MANIFEST.md`
+
+## 11. Separately verified Version 2 source-rated electrical evidence
+
+The article's principal necessary-curtailment counterexamples use **different PGLib-OPF v23.07 source files**, not the historical six-system MATPOWER/DC electrical cases. IEEE57 and IEEE118 each appear in typical and stressed operating conditions (two topologies, four source conditions). All 532 physical single-circuit outages and four intact cases receive a source-rated capacity-cut lower-bound calculation. **Thirteen connected IEEE118 stressed outages** have positive unavoidable-curtailment *lower bounds*, including circuits 52, 53, 55 and 173 that leave VELE unchanged (≥60.29, ≥49.29, ≥15.10 and ≥13.49 MW). The cut inequality and network-flow algorithms are established mathematical tools, not a new optimal power-flow method. The lower bound is necessary, not sufficient; zero lower bound is inconclusive. These outcomes must never be pooled with historical DC redistribution or unsupported nonconverged AC optimizer classifications.
+
+For exact verification see [the PGLib cut scripts](../certified_cut_v2/README.md), [the final source-driven visual atlas](V2_VISUAL_EVIDENCE.md), and [the review-freeze reproduction guide](REPRODUCIBILITY.md). Source-rated numerical data are independently archived as unchanged `v2.0.0` evidence; the full public code/data/visual package is `v2.1.0-review-freeze`.

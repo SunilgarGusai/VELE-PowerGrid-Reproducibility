@@ -61,6 +61,7 @@ jobs:
       - name: Python syntax check
         run: |
           python -m py_compile scripts/validate_public_artifact.py
+          python -m py_compile scripts/audit_final_reproducibility.py
           python -m py_compile validation/python_dcpf_reference.py
           python -m py_compile validation/compare_matpower_python.py
           python -m py_compile stages/01_matpower_preparation/scripts/prepare_phase2.py
@@ -69,6 +70,9 @@ jobs:
         run: |
           python validation/python_dcpf_reference.py --help
           python validation/compare_matpower_python.py --help
+
+      - name: Audit exact final public tracked tree and source-rated certificate evidence
+        run: python scripts/audit_final_reproducibility.py
 
       - name: Validate curated public artifact
         run: |

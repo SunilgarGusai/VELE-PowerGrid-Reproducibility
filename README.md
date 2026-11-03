@@ -12,6 +12,7 @@
 <p align="center">
   <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml"><img src="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/repository-validation.yml/badge.svg" alt="Repository verification"/></a>
   <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml"><img src="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/actions/workflows/matpower-octave-validation.yml/badge.svg" alt="MATPOWER Octave validation"/></a>
+  <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.1.0-review-freeze"><img src="https://img.shields.io/badge/review%20freeze-v2.1.0-1a617b.svg" alt="Final immutable peer-review reproducibility snapshot"/></a>
   <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0"><img src="https://img.shields.io/badge/release-v2.0.0-0e7490.svg" alt="Verified Version 2 source-rated release"/></a>
   <a href="https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission"><img src="https://img.shields.io/badge/release-v1.0.0--submission-blue.svg" alt="Historical Version 1 release"/></a>
   <a href="environment.yml"><img src="https://img.shields.io/badge/Python-3.13-3776AB.svg?logo=python&logoColor=white" alt="Python 3.13"/></a>
@@ -70,7 +71,7 @@ See [`docs/METHOD_PROTOCOL.md`](docs/METHOD_PROTOCOL.md) for the frozen computat
 
 ## Version 2 source-rated cut certification
 
-**Status:** Frozen public [Version 2.0.0 release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0) supporting an AUT journal manuscript in preparation. The historical [Version 1 frozen release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) remains intact.
+**Status:** Final public [v2.1.0-review-freeze code/data/visual snapshot](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.1.0-review-freeze), preserving the independently certified [Version 2.0.0 release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0) supporting an AUT journal manuscript in preparation. The historical [Version 1 frozen release](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) remains intact.
 
 The [certified-cut reproducibility module](certified_cut_v2/README.md) uses **PGLib-OPF v23.07** source cases for IEEE57 and IEEE118 under typical and API-stressed conditions. Four source operating cases represent **two distinct topologies**, not four statistically independent networks. The source files are obtained from upstream with byte-level SHA-256 verification; physical parallel circuits and original source ratings are treated separately.
 
@@ -92,7 +93,7 @@ The four diagrams and charts are rebuilt from the frozen electrical cases and ce
   <img src="docs/assets/v2-figures/fig1-validation-design.svg" alt="Two independent, not-pooled MATPOWER structural DC and PGLib source-rated validation streams" width="96%" />
 </p>
 
-The separate [Version 2 visual evidence atlas](docs/V2_VISUAL_EVIDENCE.md) contains all four editable SVG graphics, including the branch-52 physical cut and the complete 13-certificate chart. The corresponding reproducible source is [`scripts/generate_v2_scientific_figures.py`](scripts/generate_v2_scientific_figures.py). These **presentation assets were added to the live main branch after the immutable `v2.0.0` tag**; the verified release data and code archive remain unchanged.
+The separate [Version 2 visual evidence atlas](docs/V2_VISUAL_EVIDENCE.md) contains all four editable SVG graphics, including the branch-52 physical cut and the complete 13-certificate chart. The corresponding reproducible source is [`scripts/generate_v2_scientific_figures.py`](scripts/generate_v2_scientific_figures.py). These **presentation assets were first added to `main` after the immutable `v2.0.0` tag and are included in the final `v2.1.0-review-freeze` tag**. The original `v2.0.0` and historical `v1.0.0-submission` releases remain unchanged.
 
 The lower bound is derived from a standard cut inequality using local positive demand, available online generation capacity and surviving physical-circuit interface ratings. It is **not** a new optimization algorithm or a globally optimal AC-OPF solution. A **zero** cut bound is **inconclusive**, not evidence of security. All 13 positive cut certificates are independently checked using two different maximum-flow algorithms.
 
@@ -115,7 +116,7 @@ In the older AC candidate study, **91 of 157** positive candidate-curtailment la
 
 ### Reviewer anonymity and public-release boundary
 
-The repository and its release are **author-identifying**. The anonymous journal manuscript and supplementary review copy must not disclose the repository URL unless AUT explicitly permits it. The unpublished manuscript, manuscript source, cover letter, author declarations, and private numerical audit snapshots are **not** public release assets. An independently packaged anonymous reproducibility archive is intended for reviewer access. No publication or acceptance is claimed.
+The repository and its release are **author-identifying**. The anonymous journal manuscript and supplementary review copy must not disclose the repository URL unless AUT explicitly permits it. The unpublished manuscript, manuscript source, cover letter, author declarations, and private numerical audit snapshots are **not** public release assets. An independently packaged anonymous reproducibility archive is intended for reviewer access. No publication or acceptance is claimed. **After the tagged final review freeze, no further repository changes are planned until an editor/referee request or a verified material integrity defect; releases will not be replaced in place.**
 
 ## Study design — historical MATPOWER/DC cohort
 
@@ -188,7 +189,7 @@ This validates the **intact benchmark DC equations and branch-flow implementatio
 
 The public repository is designed as an **auditable scientific artifact**, not as an unexplained code dump.
 
-### Live reviewer-facing branch
+### Final reviewer-facing snapshot
 
 The current `main` branch contains:
 
@@ -200,9 +201,9 @@ The current `main` branch contains:
 - a frozen method protocol and result map;
 - publication-grade navigation and scientific visuals.
 
-### Frozen public release
+### Immutable public releases
 
-The historical [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) release preserves the **earlier public computational submission snapshot**, including staged inputs/outputs, portable reproduction entry points, validation evidence, technical documentation and integrity checks.
+The final [`v2.1.0-review-freeze`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.1.0-review-freeze) release archives the complete final public reviewer-facing code, figures, documentation and certificate evidence. The prior [`v2.0.0`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0) certificate release is unchanged. The historical [`v1.0.0-submission`](https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v1.0.0-submission) release preserves the **earlier public computational submission snapshot**, including staged inputs/outputs, portable reproduction entry points, validation evidence, technical documentation and integrity checks.
 
 The manuscript PDF/source, cover letter and journal-submission files are intentionally excluded from the public release. This repository is a scientific reproducibility artifact, not a mirror of the manuscript package.
 

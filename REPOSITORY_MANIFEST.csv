@@ -60,3 +60,11 @@ docs/assets/v2-figures/fig3-branch52-physical-cut.svg,visual,Rated physical cut 
 docs/assets/v2-figures/fig4-thirteen-certified-cases.svg,visual,All 13 connected source-rated witnesses highlighting four unchanged-VELE cases
 docs/V2_VISUAL_EVIDENCE.md,documentation,Source-linked Version 2 journal figure atlas
 scripts/generate_v2_scientific_figures.py,code,Reproducible source-asserting vector and high-resolution raster figure generator
+.gitignore,configuration,Ignore generated case input folders and derived outputs
+REPOSITORY_MANIFEST.csv,integrity,Full exact tracked-tree inventory including itself
+docs/MANUSCRIPT_CI_WORDING_PATCH.md,history,Historical CI wording and scope interpretation
+docs/assets/vele-workflow-animated.svg,visual,Historical animated dual-representation workflow
+.github/workflows/final-review-freeze-validation.yml,ci,Extra source-rated and scientific-figure review-freeze checks
+docs/RELEASE_NOTES_v2.1.0-review-freeze.md,release,Final code/data/visual evidence review freeze notes
+scripts/audit_final_reproducibility.py,verification,Complete reviewer-freeze scientific evidence path/link/privacy and citation audit
+.github/workflows/publish-final-review-release.yml,ci,One-time release creation after full source-rated and figure verification

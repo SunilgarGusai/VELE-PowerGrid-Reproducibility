@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "Cite the specific frozen software release you used and the original published VELE method where applicable. The forthcoming manuscript is not yet a published reference."
-title: "VELE Grid Observability and Certified Electrical Cut Evidence"
+message: "Cite the exact frozen software release used. The associated AUT manuscript is unpublished; do not cite it as a published journal article. Cite the previously published 2025 VELE definition separately where appropriate."
+title: "VELE Power-Grid Structural Observability and Certified Electrical Cut Evidence"
 type: software
 authors:
   - family-names: Gusai
@@ -10,26 +10,14 @@ authors:
     given-names: Manoharsinh R.
     orcid: "https://orcid.org/0000-0003-1833-4730"
 repository-code: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility"
-url: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.0.0"
-version: "2.0.0"
-date-released: 2026-10-30
-
-abstract: "Reproducible physical power-grid contingency checks for the observability limits of the previously published vertex eccentricity labeled energy invariant. Includes six-system MATPOWER DC proxy evidence and source-rated PGLib-OPF v23.07 capacity-cut lower bounds for thirteen consequential IEEE118 connected outages; four have unchanged VELE. Historical candidate AC optimality is not claimed."
+url: "https://github.com/SunilgarGusai/VELE-PowerGrid-Reproducibility/releases/tag/v2.1.0-review-freeze"
+version: "2.1.0"
+date-released: 2026-11-03
+abstract: "A reproducible, source-rated power-grid evidence package for studying the observability limits of the previously published vertex eccentricity labeled energy invariant. The repository includes historical six-system MATPOWER/DC proxy evidence and pinned PGLib-OPF v23.07 physical circuit capacity-cut lower bounds for 536 cases, with 13 connected positively certified stressed IEEE118 outages. Four connected certified cases have unchanged VELE. The final review freeze incorporates source-verifiable scientific figures and does not claim AC optimality, a new graph invariant, or a published manuscript."
 keywords:
-  - power systems
-  - vulnerability screening
+  - power-grid contingencies
+  - structural observability
   - spectral graph theory
   - MATPOWER
-  - DC power flow
+  - capacity-cut necessary bounds
   - reproducibility
-preferred-citation:
-  type: article
-  title: "Electrical Consequences Invisible to Eccentricity-Based Spectral Screening in Power-Grid Contingencies"
-  authors:
-    - family-names: Gusai
-      given-names: Sunilgar L.
-      orcid: "https://orcid.org/0009-0004-0739-4812"
-    - family-names: Jadeja
-      given-names: Manoharsinh R.
-      orcid: "https://orcid.org/0000-0003-1833-4730"
-  notes: "Manuscript in preparation for AUT Journal of Electrical Engineering; not published or accepted. Do not treat this preferred-citation entry as a published article. For now cite the frozen v1.0.0-submission software release and the original 2025 VELE article as appropriate."

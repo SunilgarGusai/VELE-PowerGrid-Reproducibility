@@ -45,5 +45,5 @@ jobs:
           PY
       - name: Repeat check of archived files without generated figure side effects
         run: |
-          git restore -- docs/assets/v2-figures/
+          git restore -- docs/assets/v2-figures/ certified_cut_v2/PHASE18_EXPLICIT_13_CONNECTED_AC_CUT_CERTIFICATES.csv
           python scripts/audit_final_reproducibility.py

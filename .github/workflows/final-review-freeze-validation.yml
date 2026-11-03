@@ -1,0 +1,49 @@
+name: Final AUT review-freeze evidence and figure verification
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-review-freeze-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate full tracked manifest, manuscript privacy, links, bibliographic boundary and archived numerical tables
+        run: python scripts/audit_final_reproducibility.py
+      - name: Install versioned source-rated dependencies and figure renderer
+        run: |
+          python -m pip install -r certified_cut_v2/requirements.txt
+          python -m pip install "matplotlib>=3.9,<4"
+      - name: Fetch original four pinned PGLib-OPF v23.07 source cases
+        run: python certified_cut_v2/fetch_pglib_v23_07_sources.py
+      - name: Independently regenerate all 536 necessary cut bounds
+        run: python certified_cut_v2/build_source_cut_bounds.py
+      - name: Replay archived source-rated bounds
+        run: python certified_cut_v2/replay_cut_certificates_offline.py
+      - name: Independently verify 13 positive electrical cut witnesses
+        run: python certified_cut_v2/independent_explicit_cut_witnesses.py
+      - name: Regenerate the four scientific SVG/PDF/340-DPI graphics from pinned inputs
+        run: python scripts/generate_v2_scientific_figures.py
+      - name: Ensure four regenerated scientific figures and input digest manifest exist
+        run: |
+          test -f docs/assets/v2-figures/SOURCE_FIGURE_MANIFEST.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('docs/assets/v2-figures')
+          x=json.loads((p/'SOURCE_FIGURE_MANIFEST.json').read_text())
+          assert len(x)==4 and len(list(p.glob('Fig*.svg')))==4
+          assert len(list(p.glob('Fig*.pdf')))==4 and len(list(p.glob('Fig*.png')))==4
+          assert all(min(v['pixels'])>=850 for v in x)
+          print('FOUR_JOURNAL_GRAPHICS_FROM_PINNED_INPUTS_PASS')
+          PY
+      - name: Repeat check of archived files without generated figure side effects
+        run: |
+          git restore -- docs/assets/v2-figures/
+          python scripts/audit_final_reproducibility.py
